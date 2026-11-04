@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://eliteedgeinfluence.com/sitemap.xml
