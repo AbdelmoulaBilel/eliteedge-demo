@@ -155,7 +155,7 @@ body.forge .hero h1 .gold{display:inline;margin:0}
 .lc.stall{border-color:rgba(255,106,61,.55)}
 .lc.stall u{color:var(--leak)}
 .lc.good u{color:var(--cyan)}
-.lc.out{opacity:0;transform:translateY(14px);transition:opacity .45s,transform .45s}
+.lc.out{clip-path:inset(0 0 100% 0);transform:translateY(14px);transition:clip-path .45s,transform .45s}
 @media(min-width:760px){
   .board-cols{grid-template-columns:repeat(5,minmax(0,1fr))}
   .board-cols section[data-col=new],.board-cols section[data-col=qual]{display:block}
@@ -248,7 +248,7 @@ details.how p{margin-top:6px}
 .mock.on .src i{animation:wipe .8s cubic-bezier(.65,0,.35,1) both}
 @keyframes wipe{from{transform:scaleX(.05)}}
 .src-foot{margin-top:14px;font-size:.9rem;color:var(--muted)}
-.ch-steps li{padding-block:18px 26vh;opacity:.5;transition:opacity .3s}
+.ch-steps li{padding-block:18px 26vh;opacity:.8;transition:opacity .3s}
 .ch-steps li.on{opacity:1}
 .ch-steps li:last-child{padding-bottom:8vh}
 .ch-steps span{display:block;font:600 1rem var(--sans);color:var(--gold);margin-bottom:6px}
