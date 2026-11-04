@@ -144,8 +144,9 @@
   var lastLeak = null, leakTouched = false;
   (function calc() {
     var root = $("#calc"); if (!root) return;
-    var fields = $$("input[type=range]", root), bumped = false, urlT = 0;
-    var num = $("#rTotal"), yr = $("#rYear"), r1 = $("#rLost"), r2 = $("#rOps"), b1 = $("#bLost"), b2 = $("#bOps"), verdict = $("#rVerdict");
+    var fields = $$("input[type=range]", root), bumped = false, urlT = 0, CLOSE = .2, RATE = 100;
+    var num = $("#rTotal"), yr = $("#rYear"), dotBox = $("#dots"), dots = [];
+    for (var d = 0; d < 100; d++) { var e = document.createElement("i"); e.style.transitionDelay = d * 3 + "ms"; dotBox.appendChild(e); dots.push(e); }
     var cur = 0, raf = 0, vals = {};
     var q = new URLSearchParams(location.search);
     fields.forEach(function (f) { var v = parseFloat(q.get(f.name)); vals[f.name] = isFinite(v) && v >= 0 ? v : +f.value; f.value = vals[f.name]; if (q.has(f.name)) leakTouched = true; });
@@ -162,14 +163,10 @@
         f.style.setProperty("--p", Math.min((f.value - f.min) / (f.max - f.min), 1) * 100 + "%");
         var box = $("#o-" + f.name); if (box !== skip) box.value = vals[f.name].toLocaleString("en-US");
       });
-      var v = vals, lost = v.leads * (Math.min(v.slip, 100) / 100) * (Math.min(v.close, 100) / 100) * v.deal, ops = v.hours * 4.33 * v.rate, total = lost + ops, top = Math.max(lost, ops, 1);
+      var v = vals, slip = Math.min(v.slip, 100), lost = v.leads * (slip / 100) * CLOSE * v.deal, ops = v.hours * 4.33 * RATE, total = lost + ops;
       tween(total);
-      yr.innerHTML = "That is <b>" + money(total * 12) + " a year</b>";
-      r1.textContent = money(lost) + "/mo"; r2.textContent = money(ops) + "/mo";
-      b1.style.transform = "scaleX(" + lost / top + ")"; b2.style.transform = "scaleX(" + ops / top + ")";
-      verdict.innerHTML = lost >= ops
-        ? "<b>Biggest leak: follow-up.</b>"
-        : "<b>Biggest leak: manual work.</b>";
+      yr.innerHTML = "a month. <b>" + money(total * 12) + " a year.</b>";
+      dots.forEach(function (el, i) { el.classList.toggle("off", i < Math.round(slip)); });
       lastLeak = Math.round(total);
       if (leakTouched) $$("[data-personal]").forEach(function (b) { var s = $("span", b) || b; if (!b.dataset.base) { b.dataset.base = "1"; b.innerHTML = "<span></span>" + ($("svg", b) ? $("svg", b).outerHTML : ""); s = $("span", b); } s.textContent = "Audit My " + money(lastLeak) + "/mo Leak"; });
     }
@@ -274,36 +271,102 @@
     var cal = $("#calLink"); if (cal) cal.addEventListener("click", function () { track("calendar_open", { source: kind }); });
   })();
 
-  /* ---------- System: the step in the middle of the screen picks the screen ---------- */
-  (function chapters() {
-    var steps = $$(".ch-steps li"), mocks = $$(".mock"); if (!steps.length) return;
-    function pick(n) {
-      steps.forEach(function (s, i) { s.classList.toggle("on", i === n); });
-      mocks.forEach(function (m, i) { m.classList.toggle("on", i === n); });
+  /* ---------- Test lead player: beats fire on a timeline, step by step ---------- */
+  (function player() {
+    var root = $("#player"); if (!root) return;
+    var scenes = $$(".sc", root), steps = $$(".pl-steps button", root), run = $("#plRun"), input = $("#plName"), timers = [], name = "Priya", ran = false;
+    root.classList.add("pl-ready");
+    function later(fn, t) { timers.push(setTimeout(fn, t)); }
+    function clear() { timers.forEach(clearTimeout); timers = []; }
+    function cal() { var s = $(".slot", root), box = $(".cal2", root); if (s) box.style.setProperty("--cx", s.offsetLeft + s.offsetWidth / 2 + "px"); }
+    function setName() {
+      var v = input.value.trim().replace(/\s+/g, " "); name = v || "Priya";
+      $$(".nm", root).forEach(function (e) { e.textContent = name; }); $(".ini", root).textContent = name.charAt(0).toUpperCase();
     }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) pick(+e.target.dataset.s); });
-    }, { rootMargin: innerWidth < 960 ? "-55% 0px -35% 0px" : "-46% 0px -46% 0px" });
-    steps.forEach(function (s) { io.observe(s); });
+    function count(el) {
+      var a = +el.dataset.from, b = +el.dataset.to, t0 = performance.now();
+      (function go(t) { var p = Math.min((t - t0) / 900, 1); el.textContent = money(a + (b - a) * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(go); })(t0);
+    }
+    function reset(sc) {
+      $$("[data-t]", sc).forEach(function (e) { e.classList.remove("in", "gone"); });
+      $$("[data-count]", sc).forEach(function (e) { e.textContent = money(+e.dataset.from); });
+      var c = $("[data-clock]", sc); if (c) c.textContent = "0:00";
+    }
+    function show(i) {
+      scenes.forEach(function (s, k) { s.classList.toggle("on", k === i); });
+      steps.forEach(function (b, k) {
+        b.classList.toggle("on", k === i); b.classList.toggle("done", k < i);
+        b.style.setProperty("--len", scenes[i].dataset.len + "ms");
+      });
+    }
+    function play(i, chain) {
+      clear(); var sc = scenes[i], len = +sc.dataset.len; show(i); reset(sc); cal();
+      if (calm) { $$("[data-t]", sc).forEach(function (e) { e.classList.add("in"); if (e.dataset.off) e.classList.add("gone"); }); steps[i].classList.add("done"); return; }
+      steps[i].classList.remove("on"); void steps[i].offsetWidth; steps[i].classList.add("on");
+      $$("[data-t]", sc).forEach(function (e) {
+        later(function () { e.classList.add("in"); }, +e.dataset.t);
+        if (e.dataset.off) later(function () { e.classList.add("gone"); }, +e.dataset.off);
+      });
+      $$("[data-count]", sc).forEach(function (e) { later(function () { count(e); }, +e.dataset.at); });
+      var c = $("[data-clock]", sc);
+      if (c) [1, 2, 3, 4].forEach(function (s) { later(function () { c.textContent = "0:0" + s; }, 800 + s * 350); });
+      if (chain && i < scenes.length - 1) later(function () { play(i + 1, true); }, len);
+      else later(function () { steps[i].classList.remove("on"); steps[i].classList.add("done"); run.firstChild.textContent = "Run It Again "; }, len);
+    }
+    function go() { ran = true; setName(); steps.forEach(function (b) { b.classList.remove("done"); }); play(0, true); }
+    run.addEventListener("click", function () { go(); track("demo_run", { source: input.value.trim() ? "named" : "default" }); });
+    input.addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); run.click(); } });
+    steps.forEach(function (b, i) { b.addEventListener("click", function () { setName(); play(i, false); track("demo_step", { source: b.textContent }); }); });
+    new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { o.disconnect(); if (!ran) go(); } }, { threshold: .6 }).observe(root);
+    play(0, false); clear(); if (!calm) { reset(scenes[0]); steps[0].classList.remove("on"); }
   })();
 
-  /* ---------- Example case study tabs ---------- */
+  /* ---------- Example case studies: tabs play themselves until touched ---------- */
   (function tabs() {
-    var ts = $$("[role=tab]"); if (!ts.length) return;
+    var ts = $$("[role=tab]"), box = $(".tabs"), auto = !calm, timer = 0, seen = false; if (!ts.length) return;
+    function animate(panel) {
+      panel.classList.remove("play"); void panel.offsetWidth; panel.classList.add("play");
+      $$(".met", panel).forEach(function (m) {
+        var b = $("b", m), n = +m.dataset.n, t0 = performance.now(), pre = m.dataset.pre, suf = m.dataset.suf; if (calm) return;
+        (function go(t) { var p = Math.min((t - t0) / 1000, 1); b.textContent = pre + Math.round(n * (1 - Math.pow(1 - p, 3))) + suf; if (p < 1) requestAnimationFrame(go); })(t0);
+      });
+    }
     function show(i, focus) {
       ts.forEach(function (t, k) {
-        var sel = k === i; t.setAttribute("aria-selected", sel); t.tabIndex = sel ? 0 : -1;
-        $("#" + t.getAttribute("aria-controls")).hidden = !sel;
+        var sel = k === i, panel = $("#" + t.getAttribute("aria-controls")); t.setAttribute("aria-selected", sel); t.tabIndex = sel ? 0 : -1; panel.hidden = !sel;
+        if (sel && seen) animate(panel);
       });
       if (focus) ts[i].focus();
-      track("case_study_view", { source: ts[i].textContent });
+      clearTimeout(timer);
+      if (auto && seen) timer = setTimeout(function () { var cur = ts.findIndex(function (t) { return t.getAttribute("aria-selected") === "true"; }); show((cur + 1) % ts.length); }, 5500);
     }
+    function stop() { auto = false; box.classList.remove("auto"); clearTimeout(timer); }
     ts.forEach(function (t, i) {
-      t.addEventListener("click", function () { show(i); });
+      t.addEventListener("click", function () { stop(); show(i); track("case_study_view", { source: t.textContent }); });
       t.addEventListener("keydown", function (e) {
-        if (e.key === "ArrowRight") show((i + 1) % ts.length, true);
-        if (e.key === "ArrowLeft") show((i + ts.length - 1) % ts.length, true);
+        if (e.key === "ArrowRight") { stop(); show((i + 1) % ts.length, true); }
+        if (e.key === "ArrowLeft") { stop(); show((i + ts.length - 1) % ts.length, true); }
       });
     });
+    new IntersectionObserver(function (e) {
+      var was = seen; seen = e[0].isIntersecting;
+      if (seen && !was) { if (auto) box.classList.add("auto"); show(ts.findIndex(function (t) { return t.getAttribute("aria-selected") === "true"; })); } else if (!seen) clearTimeout(timer);
+    }, { rootMargin: "0px 0px -20% 0px" }).observe(box.parentNode);
+  })();
+
+  /* ---------- Services: animated scenes cycle until touched ---------- */
+  (function services() {
+    var root = $("#svc"); if (!root) return;
+    var btns = $$(".svc-list button", root), svs = $$(".sv", root), cta = $("#svcCta"), i = 0, timer = 0, auto = !calm, seen = false;
+    function show(n) {
+      i = n;
+      btns.forEach(function (b, k) { b.classList.remove("on"); if (k === n) { void b.offsetWidth; b.classList.add("on"); } });
+      svs.forEach(function (s, k) { s.classList.toggle("on", k === n); s.classList.toggle("live", k === n && seen && !calm); });
+      cta.setAttribute("data-neck", btns[n].dataset.neck);
+      clearTimeout(timer); if (auto && seen) timer = setTimeout(function () { show((i + 1) % btns.length); }, 4400);
+    }
+    btns.forEach(function (b, n) { b.addEventListener("click", function () { auto = false; root.classList.remove("auto"); show(n); track("service_view", { source: b.textContent }); }); });
+    new IntersectionObserver(function (e) { seen = e[0].isIntersecting; if (seen && auto) root.classList.add("auto"); show(i); if (!seen) clearTimeout(timer); }).observe(root);
+    show(0);
   })();
 })();

@@ -25,7 +25,7 @@
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="preload" href="assets/fonts/playfair-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=3e74c6e9">
+<link rel="stylesheet" href="assets/css/site.css?v=dc6e8156">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -33,9 +33,7 @@
 {"@type":"WebSite","@id":"https://eliteedgeinfluence.com/#site","name":"Elite Edge Collective","url":"https://eliteedgeinfluence.com/","publisher":{"@id":"https://eliteedgeinfluence.com/#org"}},
 {"@type":"PodcastSeries","name":"The Executive Edge Podcast","url":"https://www.youtube.com/@TheExecutiveEdge1","author":{"@type":"Person","name":"Kamal Holmes","url":"https://www.linkedin.com/in/kamalholmes/"},"publisher":{"@id":"https://eliteedgeinfluence.com/#org"}},
 {"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Is the audit really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fee: $0."}},
-{"@type":"Question","name":"Will you pitch me?","acceptedAnswer":{"@type":"Answer","text":"No. You get straight answers and keep them."}},
-{"@type":"Question","name":"Who is this for?","acceptedAnswer":{"@type":"Answer","text":"Founder-led businesses with manual operations."}},
+{"@type":"Question","name":"Is the audit free?","acceptedAnswer":{"@type":"Answer","text":"Yes. No pitch."}},
 {"@type":"Question","name":"Do I manage the build?","acceptedAnswer":{"@type":"Answer","text":"No. You receive the keys."}}
 ]}]}
 </script>
@@ -48,8 +46,8 @@
   <div class="wrap nav-in">
     <a class="nav-logo" href="#main" aria-label="Elite Edge Collective, home"><img src="assets/img/logo.webp" width="420" height="83" alt="Elite Edge Collective"></a>
     <nav class="nav-links" aria-label="Main">
-      <a href="#calculator">Leak Calculator</a>
-      <a href="#system">The System</a>
+      <a href="#system">See It Work</a>
+      <a href="#calculator">Calculator</a>
       <a href="#results">Results</a>
       <a href="#services">Services</a>
       <a href="#podcast">Podcast</a>
@@ -59,8 +57,8 @@
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button>
   </div>
   <div class="nav-drawer">
-    <a href="#calculator">Leak Calculator</a>
-    <a href="#system">The System</a>
+    <a href="#system">See It Work</a>
+    <a href="#calculator">Calculator</a>
     <a href="#results">Results</a>
     <a href="#services">Services</a>
     <a href="#podcast">Podcast</a>
@@ -73,13 +71,13 @@
 <main id="main">
 <section class="hero">
   <div class="wrap">
-    <p class="eyebrow rise">AI-powered revenue systems for founder-led businesses</p>
-    <h1 class="h-xl">Your Business Is Leaking Money Every Day You Operate Without a System. <span class="gold">Here’s How to Stop It.</span></h1>
+    <p class="eyebrow rise">AI revenue systems for founders</p>
+    <h1 class="h-xl">Your Business Is Leaking Money. <span class="gold">Here’s How to Stop It.</span></h1>
     <div class="hero-row rise" style="--i:1">
             <div>
         <div class="hero-cta">
           <button class="btn btn-gold" data-lead="hero">Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button>
-          <a class="link-q" href="#calculator">Calculate my leak first</a>
+          <a class="link-q" href="#system">Watch it work</a>
         </div>
         <p class="hero-note"><b>Free.</b> No pitch.</p>
       </div>
@@ -91,7 +89,7 @@
           <div><dt>Lost to no follow-up</dt><dd class="lost" id="bLostNow">$0</dd></div>
           <div><dt>Closed won</dt><dd class="won" id="bWonNow">$0</dd></div>
         </dl>
-        <button class="switch hint" id="pipeSwitch" role="switch" aria-checked="false"><span>Install the system</span><i aria-hidden="true"></i></button>
+        <button class="switch hint" id="pipeSwitch" role="switch" aria-checked="false"><em class="try">Try it</em><span>Install the system</span><i aria-hidden="true"></i></button>
       </div>
       <div class="board-cols" id="boardCols" aria-hidden="true">
         <section data-col="new"><header>New lead <em></em></header><div class="col"></div></section>
@@ -107,167 +105,136 @@
 
 <div class="wrap logos"><p>Trusted by modern brands and operators</p><span>Ekster</span><span>Aura</span><span>Akiflow</span></div>
 
-<section class="sec" id="familiar">
-  <div class="wrap split" style="align-items:start">
-    <h2 class="h-lg fx">Sound familiar?</h2>
-    <ol class="fam fx">
-      <li><b>Leads slip through the cracks.</b></li>
-      <li><b>Your team does a machine’s work.</b></li>
-      <li><b>Everything runs through you.</b></li>
-      <li><b>You’ve got tools. You don’t have a system.</b></li>
-    </ol>
-  </div>
-</section>
-
-<section class="sec" id="calculator" style="padding-top:0">
-  <div class="wrap">
-    <div class="calc" id="calc">
-      <div>
-        <div class="calc-head"><h2 class="h-lg">What’s your leak costing you?</h2></div>
-        <form class="panel" onsubmit="return false" aria-label="Your numbers">
-        <div class="field"><div class="field-top"><label for="f-leads">Leads per month</label><span class="val"><input id="o-leads" data-for="f-leads" inputmode="numeric" autocomplete="off" aria-label="Leads per month" style="--w:5ch"></span></div><input class="range" id="f-leads" name="leads" type="range" min="10" max="500" step="10" value="60"></div>
-        <div class="field"><div class="field-top"><label for="f-deal">Deal value</label><span class="val">$<input id="o-deal" data-for="f-deal" inputmode="numeric" autocomplete="off" aria-label="Average deal value in dollars" style="--w:7ch"></span></div><input class="range" id="f-deal" name="deal" type="range" min="500" max="50000" step="500" value="5000"></div>
-        <div class="field"><div class="field-top"><label for="f-close">Close rate</label><span class="val"><input id="o-close" data-for="f-close" inputmode="numeric" autocomplete="off" aria-label="Close rate percent" style="--w:3ch">%</span></div><input class="range" id="f-close" name="close" type="range" min="5" max="50" step="1" value="20"></div>
-        <div class="field"><div class="field-top"><label for="f-slip">Leads with no follow-up</label><span class="val"><input id="o-slip" data-for="f-slip" inputmode="numeric" autocomplete="off" aria-label="Percent of leads with no follow-up" style="--w:3ch">%</span></div><input class="range" id="f-slip" name="slip" type="range" min="5" max="60" step="1" value="25"></div>
-        <div class="field"><div class="field-top"><label for="f-hours">Manual hours a week</label><span class="val"><input id="o-hours" data-for="f-hours" inputmode="numeric" autocomplete="off" aria-label="Manual hours per week" style="--w:3ch"> hrs</span></div><input class="range" id="f-hours" name="hours" type="range" min="0" max="60" step="1" value="15"></div>
-        <div class="field"><div class="field-top"><label for="f-rate">Cost per hour</label><span class="val">$<input id="o-rate" data-for="f-rate" inputmode="numeric" autocomplete="off" aria-label="Cost of an hour in dollars" style="--w:4ch">/hr</span></div><input class="range" id="f-rate" name="rate" type="range" min="25" max="300" step="5" value="100"></div>
-      </form>
-      </div>
-      <div class="panel result" aria-live="polite">
-        <span class="eyebrow">Estimated monthly leak</span>
-        <div class="result-num" id="rTotal">$0</div>
-        <p class="result-yr" id="rYear"></p>
-        <div class="bars">
-          <div><div class="bar-top"><span>Missed follow-up</span><span id="rLost"></span></div><div class="bar"><i id="bLost"></i></div></div>
-          <div><div class="bar-top"><span>Manual work</span><span id="rOps"></span></div><div class="bar alt"><i id="bOps"></i></div></div>
-        </div>
-        <p class="verdict" id="rVerdict"></p>
-        <button class="btn btn-gold btn-block" data-lead="calculator">Audit My Real Number <svg aria-hidden="true"><use href="#arr"/></svg></button>
-        <details class="how"><summary>How this is calculated</summary><p>Leads × no follow-up % × close rate × deal value, plus hours × 4.33 × hourly cost. An estimate, not a promise.</p></details>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section class="sys" id="system">
   <div class="wrap">
-    <div class="sys-head fx">
-      <h2 class="h-lg">We don’t run campaigns. We build the systems that make them work.</h2>
-    </div>
-    <div class="ch">
-      <div class="ch-stage" aria-hidden="true">
-        <div class="mock on" data-m="0">
-          <div class="mock-top"><b>New lead</b><span class="tag ok">Captured</span></div>
-          <div class="who"><i>PN</i><div><b>Priya N.</b><span>Owner, dental group, 3 locations</span></div></div>
-          <dl class="kv">
-            <div><dt>Source</dt><dd>Google Ads</dd></div>
-            <div><dt>Landed on</dt><dd>Pricing page</dd></div>
-            <div><dt>Deal size</dt><dd>$4,800</dd></div>
-            <div><dt>Fit score</dt><dd class="gold">82 / 100</dd></div>
-          </dl>
-        </div>
-        <div class="mock" data-m="1">
-          <div class="mock-top"><b>Priya N.</b><span class="tag ok">Replied in 4 sec</span></div>
-          <div class="msgs">
-            <p class="in">Do you work with multi-location practices?</p>
-            <p class="out">Yes. Does Tuesday at 10:30 work for a short call?</p>
+    <h2 class="h-lg sys-h fx">We don’t run campaigns. We build the systems that make them work.</h2>
+    <div class="pl" id="player">
+      <div class="pl-top">
+        <label class="sr" for="plName">Your first name</label>
+        <input id="plName" placeholder="Your first name" maxlength="18" autocomplete="off">
+        <button class="btn btn-gold" id="plRun" type="button">Send a Test Lead <svg aria-hidden="true"><use href="#arr"/></svg></button>
+      </div>
+      <div class="pl-steps">
+        <button type="button" data-go="0" class="on">Capture<i><u></u></i></button>
+        <button type="button" data-go="1">Reply<i><u></u></i></button>
+        <button type="button" data-go="2">Book<i><u></u></i></button>
+        <button type="button" data-go="3">Report<i><u></u></i></button>
+      </div>
+      <div class="pl-stage" aria-hidden="true">
+        <div class="sc on" data-len="3400">
+          <ul class="srcs"><li>Ads</li><li class="hit" data-t="300">Website</li><li>DMs</li><li>Referrals</li></ul>
+          <i class="fly" data-t="700"></i>
+          <div class="rec" data-t="1100">
+            <div class="who"><i class="ini">P</i><b class="nm">Priya</b></div>
+            <div class="rw" data-t="1500"><span>Source</span><b>Website</b></div>
+            <div class="rw" data-t="1900"><span>Deal</span><b>$4,800</b></div>
+            <div class="rw" data-t="2300"><span>Fit</span><div class="meter"><u></u></div></div>
           </div>
         </div>
-        <div class="mock" data-m="2">
-          <div class="mock-top"><b>Call booked</b><span class="tag ok">Reminders set</span></div>
-          <div class="cal">
+        <div class="sc" data-len="4300">
+          <div class="clock" data-t="100"><b data-clock>0:00</b></div>
+          <div class="msgs2">
+            <p class="in" data-t="300">Can you help my business?</p>
+            <p class="dots" data-t="900" data-off="2300"><i></i><i></i><i></i></p>
+            <p class="out" data-t="2300">Hi <span class="nm">Priya</span>. Yes. Tuesday at 10:30?</p>
+            <p class="in" data-t="3300">Perfect.</p>
+          </div>
+        </div>
+        <div class="sc" data-len="3600">
+          <div class="cal2">
             <div><span>Mon</span><i></i><i></i><i></i></div>
-            <div><span>Tue</span><i></i><i class="pick">10:30</i><i></i></div>
+            <div><span>Tue</span><i></i><i class="slot" data-t="1400">10:30</i><i></i></div>
             <div><span>Wed</span><i></i><i></i><i></i></div>
             <div><span>Thu</span><i></i><i></i><i></i></div>
+            <svg class="cur" data-t="300" viewBox="0 0 24 24" fill="#f4f1e8"><path d="M5 2l14 11-6 1 4 8-3 1-4-8-5 4z"/></svg>
           </div>
-          <ul class="done-list"><li>On the calendar</li><li>CRM updated</li></ul>
+          <ul class="ticks"><li data-t="2000">Booked</li><li data-t="2500">Reminder sent</li><li data-t="3000">CRM updated</li></ul>
         </div>
-        <div class="mock" data-m="3">
-          <div class="mock-top"><b>Revenue by source</b><span class="tag">This quarter</span></div>
-          <ul class="src">
-            <li style="--w:100%"><span>Google Ads</span><b>$38,420</b><i></i></li>
-            <li style="--w:55%"><span>LinkedIn</span><b>$21,150</b><i></i></li>
-            <li style="--w:39%"><span>Referrals</span><b>$14,900</b><i></i></li>
-            <li style="--w:24%"><span>Podcast</span><b>$9,275</b><i></i></li>
+        <div class="sc" data-len="4200">
+          <div class="tot"><span>Revenue</span><b data-count data-from="79945" data-to="84745" data-at="2300">$79,945</b></div>
+          <ul class="src2">
+            <li data-t="200" style="--w:100%"><span>Ads</span><i></i></li>
+            <li data-t="500" style="--w:58%"><span>Referrals</span><i></i></li>
+            <li data-t="800" style="--w:34%"><span>Podcast</span><i></i></li>
           </ul>
-          
+          <p class="plus" data-t="2300"><b class="nm">Priya</b> <span>+$4,800</span></p>
         </div>
-        <p class="mock-note">Example data</p>
       </div>
-      <ol class="ch-steps">
-        <li class="on" data-s="0"><span>Capture</span><h3>Every lead, one place.</h3></li>
-        <li data-s="1"><span>Follow up</span><h3>Answered in seconds.</h3></li>
-        <li data-s="2"><span>Book</span><h3>Good fits get booked.</h3></li>
-        <li data-s="3"><span>See it</span><h3>See what’s working.</h3></li>
-      </ol>
+      <p class="pl-note">Simulation</p>
     </div>
   </div>
 </section>
 
-<section class="sec" id="results">
+<section class="sec" id="calculator">
   <div class="wrap">
-    <div class="sec-head fx" style="margin-bottom:28px">
-      <h2 class="h-lg">Results</h2>
-      <p class="ex-flag">Examples only. Real client results go here.</p>
+    <h2 class="h-lg fx" style="margin-bottom:clamp(24px,4vw,40px)">What’s your leak costing you?</h2>
+    <div class="calc" id="calc">
+      <form class="panel" onsubmit="return false" aria-label="Your numbers">
+        <div class="field"><div class="field-top"><label for="f-leads">Leads a month</label><span class="val"><input id="o-leads" data-for="f-leads" inputmode="numeric" autocomplete="off" aria-label="Leads per month" style="--w:5ch"></span></div><input class="range" id="f-leads" name="leads" type="range" min="10" max="500" step="10" value="60"></div>
+        <div class="field"><div class="field-top"><label for="f-deal">Deal value</label><span class="val">$<input id="o-deal" data-for="f-deal" inputmode="numeric" autocomplete="off" aria-label="Average deal value in dollars" style="--w:7ch"></span></div><input class="range" id="f-deal" name="deal" type="range" min="500" max="50000" step="500" value="5000"></div>
+        <div class="field"><div class="field-top"><label for="f-slip">Leads with no follow-up</label><span class="val"><input id="o-slip" data-for="f-slip" inputmode="numeric" autocomplete="off" aria-label="Percent of leads with no follow-up" style="--w:3ch">%</span></div><input class="range" id="f-slip" name="slip" type="range" min="5" max="60" step="1" value="25"></div>
+        <div class="field"><div class="field-top"><label for="f-hours">Manual hours a week</label><span class="val"><input id="o-hours" data-for="f-hours" inputmode="numeric" autocomplete="off" aria-label="Manual hours per week" style="--w:3ch"> hrs</span></div><input class="range" id="f-hours" name="hours" type="range" min="0" max="60" step="1" value="15"></div>
+      </form>
+      <div class="panel result" aria-live="polite">
+        <div class="result-num" id="rTotal">$0</div>
+        <p class="result-yr" id="rYear"></p>
+        <div class="dots100" id="dots" aria-hidden="true"></div>
+        <p class="dots-key"><i></i> Lost lead</p>
+        <button class="btn btn-gold btn-block" data-lead="calculator">Audit My Real Number <svg aria-hidden="true"><use href="#arr"/></svg></button>
+        <details class="how"><summary>How this works</summary><p>Leads × no follow-up % × 20% close × deal value, plus hours × 4.33 × $100. An estimate, not a promise.</p></details>
+      </div>
     </div>
+  </div>
+</section>
+
+<section class="sec" id="results" style="padding-top:0">
+  <div class="wrap">
+    <h2 class="h-lg fx">Results</h2>
+    <p class="ex-flag">Examples only. Real client results go here.</p>
     <div class="tabs" role="tablist" aria-label="Example case studies">
-      <button role="tab" id="t0" aria-controls="p0" aria-selected="true">Home services</button>
-      <button role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">Consulting</button>
-      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Coaching</button>
+      <button role="tab" id="t0" aria-controls="p0" aria-selected="true">Roofing<u></u></button>
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">Consulting<u></u></button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Coaching<u></u></button>
     </div>
     <article class="case" role="tabpanel" id="p0" aria-labelledby="t0" tabindex="0">
-      <div class="case-l">
-        <span class="ex-tag">Example, not a real client</span>
-        <h3>Roofing company</h3>
-              </div>
-      <div class="case-r">
-        <div class="met"><span>First response</span><b>3 min</b><small>was 19 hrs</small></div>
-        <div class="met"><span>Booked estimates</span><b>41 /mo</b><small>was 17</small></div>
-        <div class="met"><span>Owner admin time</span><b>6 hrs/wk</b><small>was 23</small></div>
-        <div class="trend" style="--a:18%;--b:24%;--c:31%;--d:47%;--e:63%;--f:78%;--g:92%"><p>Booked estimates over 90 days</p><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-      </div>
+      <div class="met" data-n="3" data-pre="" data-suf=" min"><span>First reply</span><b>3 min</b><div class="vs"><p><em style="--w:100%"></em><small>19 hrs</small></p><p class="now"><em style="--w:6%"></em></p></div></div>
+      <div class="met" data-n="41" data-pre="" data-suf=""><span>Booked a month</span><b>41</b><div class="vs"><p><em style="--w:41%"></em><small>17</small></p><p class="now"><em style="--w:100%"></em></p></div></div>
+      <div class="met" data-n="6" data-pre="" data-suf=""><span>Admin hours a week</span><b>6</b><div class="vs"><p><em style="--w:100%"></em><small>23</small></p><p class="now"><em style="--w:26%"></em></p></div></div>
     </article>
     <article class="case" role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0" hidden>
-      <div class="case-l">
-        <span class="ex-tag">Example, not a real client</span>
-        <h3>Founder-led consultancy</h3>
-              </div>
-      <div class="case-r">
-        <div class="met"><span>Founder time on sales admin</span><b>7 hrs/wk</b><small>was 26</small></div>
-        <div class="met"><span>Proposal turnaround</span><b>1 day</b><small>was 9</small></div>
-        <div class="met"><span>Qualified pipeline</span><b>$312k</b><small>was $128k</small></div>
-        <div class="trend" style="--a:30%;--b:34%;--c:41%;--d:44%;--e:58%;--f:71%;--g:88%"><p>Qualified pipeline over 90 days</p><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-      </div>
+      <div class="met" data-n="7" data-pre="" data-suf=""><span>Sales admin hours</span><b>7</b><div class="vs"><p><em style="--w:100%"></em><small>26</small></p><p class="now"><em style="--w:27%"></em></p></div></div>
+      <div class="met" data-n="1" data-pre="" data-suf=""><span>Proposal days</span><b>1</b><div class="vs"><p><em style="--w:100%"></em><small>9</small></p><p class="now"><em style="--w:11%"></em></p></div></div>
+      <div class="met" data-n="312" data-pre="$" data-suf="k"><span>Qualified pipeline</span><b>$312k</b><div class="vs"><p><em style="--w:41%"></em><small>$128k</small></p><p class="now"><em style="--w:100%"></em></p></div></div>
     </article>
     <article class="case" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
-      <div class="case-l">
-        <span class="ex-tag">Example, not a real client</span>
-        <h3>Online coach</h3>
-              </div>
-      <div class="case-r">
-        <div class="met"><span>Booked calls</span><b>58 /mo</b><small>was 22</small></div>
-        <div class="met"><span>Show-up rate</span><b>74%</b><small>was 46%</small></div>
-        <div class="met"><span>Manual hours</span><b>5 hrs/wk</b><small>was 21</small></div>
-        <div class="trend" style="--a:22%;--b:29%;--c:43%;--d:52%;--e:60%;--f:83%;--g:90%"><p>Booked calls over 90 days</p><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
-      </div>
+      <div class="met" data-n="58" data-pre="" data-suf=""><span>Booked a month</span><b>58</b><div class="vs"><p><em style="--w:38%"></em><small>22</small></p><p class="now"><em style="--w:100%"></em></p></div></div>
+      <div class="met" data-n="74" data-pre="" data-suf="%"><span>Show-up rate</span><b>74%</b><div class="vs"><p><em style="--w:62%"></em><small>46%</small></p><p class="now"><em style="--w:100%"></em></p></div></div>
+      <div class="met" data-n="5" data-pre="" data-suf=""><span>Manual hours a week</span><b>5</b><div class="vs"><p><em style="--w:100%"></em><small>21</small></p><p class="now"><em style="--w:24%"></em></p></div></div>
     </article>
-    <div class="sec-foot"><span></span><button class="btn btn-gold" data-lead="results">Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
+    <p class="case-key"><i></i> Before <i class="g"></i> After</p>
   </div>
 </section>
 
-<section class="sec" id="services">
+<section class="sec" id="services" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head fx" style="margin-bottom:32px">
-      <h2 class="h-lg">Infrastructure for Scalable Growth</h2>
+    <h2 class="h-lg fx" style="margin-bottom:clamp(24px,4vw,40px)">What we build</h2>
+    <div class="svc" id="svc">
+      <div class="svc-list">
+        <button type="button" class="on" data-neck="pipeline">Paid Media<u></u></button>
+        <button type="button" data-neck="pipeline">Lead Acquisition<u></u></button>
+        <button type="button" data-neck="visibility">Conversion<u></u></button>
+        <button type="button" data-neck="manual-ops">AI Workflows<u></u></button>
+        <button type="button" data-neck="founder">Brand Authority<u></u></button>
+      </div>
+      <div class="svc-stage" aria-hidden="true">
+        <svg class="sv on" viewBox="0 0 480 280"><g class="bars"><rect x="40" y="170" width="46" height="90" rx="4"/><rect x="104" y="140" width="46" height="120" rx="4"/><rect x="168" y="112" width="46" height="148" rx="4"/><rect x="232" y="84" width="46" height="176" rx="4"/><rect x="296" y="52" width="46" height="208" rx="4"/><rect x="360" y="20" width="46" height="240" rx="4"/></g></svg>
+        <svg class="sv" viewBox="0 0 480 280"><circle class="ring" cx="372" cy="140" r="84"/><circle class="ring" cx="372" cy="140" r="52"/><circle class="core" cx="372" cy="140" r="20"/><g class="flow"><circle r="7" style="--p:path('M0 40 C120 40 200 140 372 140')"/><circle r="7" style="--p:path('M0 140 L372 140');--d:.5s"/><circle r="7" style="--p:path('M0 240 C120 240 200 140 372 140');--d:1s"/><circle r="7" style="--p:path('M0 90 C140 90 220 140 372 140');--d:1.5s"/><circle r="7" style="--p:path('M0 190 C140 190 220 140 372 140');--d:2s"/></g></svg>
+        <svg class="sv" viewBox="0 0 480 280"><g class="fun"><path class="wall" d="M60 30 H420 L300 150 V250 H180 V150 Z"/></g><g class="flow"><circle r="6" style="--p:path('M150 10 L240 150 L240 280')"/><circle r="6" style="--p:path('M330 10 L240 150 L240 280');--d:.6s"/><circle r="6" style="--p:path('M240 10 L240 280');--d:1.2s"/><circle r="6" style="--p:path('M190 10 L240 150 L240 280');--d:1.8s"/><circle r="6" style="--p:path('M290 10 L240 150 L240 280');--d:2.4s"/></g></svg>
+        <svg class="sv" viewBox="0 0 480 280"><path class="link" d="M70 140 H180 M210 140 L300 60 M210 140 L300 220 M330 60 L410 140 M330 220 L410 140"/><circle class="nd" cx="60" cy="140" r="26"/><circle class="nd" cx="196" cy="140" r="26" style="--d:.5s"/><circle class="nd" cx="316" cy="60" r="26" style="--d:1s"/><circle class="nd" cx="316" cy="220" r="26" style="--d:1s"/><circle class="nd" cx="424" cy="140" r="26" style="--d:1.5s"/></svg>
+        <svg class="sv" viewBox="0 0 480 280"><circle class="rip" cx="240" cy="140" r="110"/><circle class="rip" cx="240" cy="140" r="110" style="--d:1s"/><circle class="rip" cx="240" cy="140" r="110" style="--d:2s"/><circle class="core" cx="240" cy="140" r="30"/></svg>
+      </div>
     </div>
-    <div class="rows fx">
-      <button class="row" data-lead="svc-paid" data-neck="pipeline"><small>Ads that don’t pay back</small><h3>Paid Media Strategy</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-leads" data-neck="pipeline"><small>A pipeline you can’t predict</small><h3>Lead Acquisition</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-cro" data-neck="visibility"><small>Traffic that doesn’t convert</small><h3>Conversion Optimization</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-ai" data-neck="manual-ops"><small>Work a machine should be doing</small><h3>AI Workflows</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-brand" data-neck="founder"><small>Prospects who don’t trust you yet</small><h3>Brand Authority</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-    </div>
+    <button class="btn btn-gold" id="svcCta" data-lead="services" data-neck="pipeline" style="margin-top:24px">Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button>
   </div>
 </section>
 
@@ -275,7 +242,7 @@
   <div class="wrap">
     <div class="sec-head fx" style="margin-bottom:0">
       <h2 class="h-lg">From Fragmented to Structured</h2>
-      <p class="lede">Built in 30 days.</p>
+      
     </div>
     <ol class="rail">
       <li><b>01</b><h3 class="h-md">Diagnose</h3></li>
@@ -287,35 +254,23 @@
 </section>
 
 <section class="sec forge-band" id="forge">
-  <div class="wrap split" style="align-items:start">
-    <div class="fx">
-      <h2 class="h-lg">Meet Forge AI</h2>
-      <p class="lede" style="margin-top:14px">We install the AI operatives that run it.</p>
-      <div class="hero-cta"><a class="btn btn-gold" href="forge-ai/index.html">Explore Forge AI <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
-    </div>
-    <ul class="ops fx" style="margin-top:0">
-      <li><b>Lead &amp; Pipeline</b></li>
-      <li><b>Workflow</b></li>
-      <li><b>Operations</b></li>
-      <li><b>Visibility</b></li>
-    </ul>
+  <div class="wrap forge-row">
+    <h2 class="h-lg fx">Forge AI installs it.</h2>
+    <a class="btn btn-gold" href="forge-ai/index.html">See Forge AI <svg aria-hidden="true"><use href="#arr"/></svg></a>
   </div>
 </section>
 
 <section class="sec" id="podcast">
   <div class="wrap">
-    <div class="sec-head fx">
+    <div class="fx">
       <span class="eyebrow">The Executive Edge Podcast</span>
-      <h2 class="h-lg" style="margin-top:10px">What actually worked.</h2>
+      <h2 class="h-lg" style="margin-top:10px;margin-bottom:28px">Watch the show</h2>
     </div>
     <div class="eps">
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep1-elizabeth-power.webp" width="720" height="405" alt="Episode 1 cover: Elizabeth Power"></div><div class="ep-b"><span class="mono">EP 1</span><h3>Elizabeth Power</h3></div></a>
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep2-stacy-wig.webp" width="720" height="405" alt="Episode 2 cover: Stacy Wig"></div><div class="ep-b"><span class="mono">EP 2</span><h3>Stacy Wig</h3></div></a>
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep3-casey-fox.webp" width="720" height="405" alt="Episode 3 cover: Casey Fox"></div><div class="ep-b"><span class="mono">EP 3</span><h3>Casey Fox</h3></div></a>
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep4-sahara-de-vore.webp" width="720" height="405" alt="Episode 4 cover: Sahara De Vore"></div><div class="ep-b"><span class="mono">EP 4</span><h3>Sahara De Vore</h3></div></a>
-    </div>
-    <div class="sec-foot"><span></span>
-      <a class="btn" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener">Watch on YouTube <svg aria-hidden="true"><use href="#arr"/></svg></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep1-elizabeth-power.webp" width="720" height="405" alt="Episode 1 cover: Elizabeth Power"></div><div class="ep-b"><h3>Elizabeth Power</h3></div></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep2-stacy-wig.webp" width="720" height="405" alt="Episode 2 cover: Stacy Wig"></div><div class="ep-b"><h3>Stacy Wig</h3></div></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep3-casey-fox.webp" width="720" height="405" alt="Episode 3 cover: Casey Fox"></div><div class="ep-b"><h3>Casey Fox</h3></div></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep4-sahara-de-vore.webp" width="720" height="405" alt="Episode 4 cover: Sahara De Vore"></div><div class="ep-b"><h3>Sahara De Vore</h3></div></a>
     </div>
   </div>
 </section>
@@ -324,9 +279,7 @@
   <div class="wrap faq-grid">
     <div class="fx"><h2 class="h-lg">Before you book</h2></div>
     <div class="faq fx">
-      <details open><summary>Is the audit really free?</summary><p>Yes. Fee: $0.</p></details>
-      <details><summary>Will you pitch me?</summary><p>No. You get straight answers and keep them.</p></details>
-      <details><summary>Who is this for?</summary><p>Founder-led businesses with manual operations.</p></details>
+      <details open><summary>Is the audit free?</summary><p>Yes. No pitch.</p></details>
       <details><summary>Do I manage the build?</summary><p>No. You receive the keys.</p></details>
     </div>
   </div>
@@ -394,6 +347,6 @@
   </div>
 </dialog>
 
-<script src="assets/js/site.js?v=e5ffcfa8" defer></script>
+<script src="assets/js/site.js?v=91659cb9" defer></script>
 </body>
 </html>
