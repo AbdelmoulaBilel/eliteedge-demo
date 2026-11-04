@@ -25,7 +25,7 @@
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="preload" href="assets/fonts/playfair-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=9419df4f">
+<link rel="stylesheet" href="assets/css/site.css?v=3e74c6e9">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -33,12 +33,10 @@
 {"@type":"WebSite","@id":"https://eliteedgeinfluence.com/#site","name":"Elite Edge Collective","url":"https://eliteedgeinfluence.com/","publisher":{"@id":"https://eliteedgeinfluence.com/#org"}},
 {"@type":"PodcastSeries","name":"The Executive Edge Podcast","url":"https://www.youtube.com/@TheExecutiveEdge1","author":{"@type":"Person","name":"Kamal Holmes","url":"https://www.linkedin.com/in/kamalholmes/"},"publisher":{"@id":"https://eliteedgeinfluence.com/#org"}},
 {"@type":"FAQPage","mainEntity":[
-{"@type":"Question","name":"Is the audit really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fee: $0. We show you exactly where you're losing money. No pitch, no fluff, straight answers."}},
-{"@type":"Question","name":"Will you try to sell me on the call?","acceptedAnswer":{"@type":"Answer","text":"No pitch. No fluff. We show you where the money is going. If you want help fixing it, we can talk about that. If not, you keep the answers."}},
-{"@type":"Question","name":"What do I leave with?","acceptedAnswer":{"@type":"Answer","text":"A clear map of your bottlenecks and the exact systems costing you time and money, so you know what to fix first."}},
-{"@type":"Question","name":"Who is this for?","acceptedAnswer":{"@type":"Answer","text":"Founder-led businesses with proven product-market fit, where operations are too manual and reactive, and teams that depend on people instead of systems."}},
-{"@type":"Question","name":"What is the difference between Elite Edge Collective and Forge AI?","acceptedAnswer":{"@type":"Answer","text":"Elite Edge Collective designs the overarching growth strategy. Forge AI is the specialized division that installs intelligent automation and AI operatives directly into your business."}},
-{"@type":"Question","name":"Do I have to manage the build?","acceptedAnswer":{"@type":"Answer","text":"No. We build it, test it and install it directly into your business. You don't manage the build. You receive the keys."}}
+{"@type":"Question","name":"Is the audit really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Fee: $0."}},
+{"@type":"Question","name":"Will you pitch me?","acceptedAnswer":{"@type":"Answer","text":"No. You get straight answers and keep them."}},
+{"@type":"Question","name":"Who is this for?","acceptedAnswer":{"@type":"Answer","text":"Founder-led businesses with manual operations."}},
+{"@type":"Question","name":"Do I manage the build?","acceptedAnswer":{"@type":"Answer","text":"No. You receive the keys."}}
 ]}]}
 </script>
 </head>
@@ -78,13 +76,12 @@
     <p class="eyebrow rise">AI-powered revenue systems for founder-led businesses</p>
     <h1 class="h-xl">Your Business Is Leaking Money Every Day You Operate Without a System. <span class="gold">Here’s How to Stop It.</span></h1>
     <div class="hero-row rise" style="--i:1">
-      <p class="lede">That’s not a motivation problem. It’s a systems problem. We install the revenue infrastructure that turns what you’re already doing into compounding results.</p>
-      <div>
+            <div>
         <div class="hero-cta">
           <button class="btn btn-gold" data-lead="hero">Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button>
           <a class="link-q" href="#calculator">Calculate my leak first</a>
         </div>
-        <p class="hero-note"><b>Fee: $0.</b> No pitch. No fluff. Straight answers.</p>
+        <p class="hero-note"><b>Free.</b> No pitch.</p>
       </div>
     </div>
     <div class="board rise" id="board" style="--i:2">
@@ -114,10 +111,10 @@
   <div class="wrap split" style="align-items:start">
     <h2 class="h-lg fx">Sound familiar?</h2>
     <ol class="fam fx">
-      <li><b>Leads fall through the cracks</b><span>because follow-up depends on someone remembering.</span></li>
-      <li><b>Your best people do work a machine should do.</b><span>Busy all week. Numbers still flat.</span></li>
-      <li><b>Your ops run on you</b><span>and everyone knows it.</span></li>
-      <li><b>You’ve got tools. You don’t have a system.</b><span>Effort without a system is just expensive.</span></li>
+      <li><b>Leads slip through the cracks.</b></li>
+      <li><b>Your team does a machine’s work.</b></li>
+      <li><b>Everything runs through you.</b></li>
+      <li><b>You’ve got tools. You don’t have a system.</b></li>
     </ol>
   </div>
 </section>
@@ -126,14 +123,14 @@
   <div class="wrap">
     <div class="calc" id="calc">
       <div>
-        <div class="calc-head"><h2 class="h-lg">How many hours did you spend last week doing something a system should be doing?</h2><p class="lede">Most businesses find 15–25 hours of weekly bleed in the first session. Put in your numbers and see what yours costs. Drag the sliders or type exact figures.</p></div>
+        <div class="calc-head"><h2 class="h-lg">What’s your leak costing you?</h2></div>
         <form class="panel" onsubmit="return false" aria-label="Your numbers">
         <div class="field"><div class="field-top"><label for="f-leads">Leads per month</label><span class="val"><input id="o-leads" data-for="f-leads" inputmode="numeric" autocomplete="off" aria-label="Leads per month" style="--w:5ch"></span></div><input class="range" id="f-leads" name="leads" type="range" min="10" max="500" step="10" value="60"></div>
-        <div class="field"><div class="field-top"><label for="f-deal">Average deal value</label><span class="val">$<input id="o-deal" data-for="f-deal" inputmode="numeric" autocomplete="off" aria-label="Average deal value in dollars" style="--w:7ch"></span></div><input class="range" id="f-deal" name="deal" type="range" min="500" max="50000" step="500" value="5000"></div>
+        <div class="field"><div class="field-top"><label for="f-deal">Deal value</label><span class="val">$<input id="o-deal" data-for="f-deal" inputmode="numeric" autocomplete="off" aria-label="Average deal value in dollars" style="--w:7ch"></span></div><input class="range" id="f-deal" name="deal" type="range" min="500" max="50000" step="500" value="5000"></div>
         <div class="field"><div class="field-top"><label for="f-close">Close rate</label><span class="val"><input id="o-close" data-for="f-close" inputmode="numeric" autocomplete="off" aria-label="Close rate percent" style="--w:3ch">%</span></div><input class="range" id="f-close" name="close" type="range" min="5" max="50" step="1" value="20"></div>
-        <div class="field"><div class="field-top"><label for="f-slip">Leads that never get a real follow-up</label><span class="val"><input id="o-slip" data-for="f-slip" inputmode="numeric" autocomplete="off" aria-label="Percent of leads with no follow-up" style="--w:3ch">%</span></div><input class="range" id="f-slip" name="slip" type="range" min="5" max="60" step="1" value="25"></div>
-        <div class="field"><div class="field-top"><label for="f-hours">Manual hours per week</label><span class="val"><input id="o-hours" data-for="f-hours" inputmode="numeric" autocomplete="off" aria-label="Manual hours per week" style="--w:3ch"> hrs</span></div><input class="range" id="f-hours" name="hours" type="range" min="0" max="60" step="1" value="15"></div>
-        <div class="field"><div class="field-top"><label for="f-rate">What an hour of that time costs</label><span class="val">$<input id="o-rate" data-for="f-rate" inputmode="numeric" autocomplete="off" aria-label="Cost of an hour in dollars" style="--w:4ch">/hr</span></div><input class="range" id="f-rate" name="rate" type="range" min="25" max="300" step="5" value="100"></div>
+        <div class="field"><div class="field-top"><label for="f-slip">Leads with no follow-up</label><span class="val"><input id="o-slip" data-for="f-slip" inputmode="numeric" autocomplete="off" aria-label="Percent of leads with no follow-up" style="--w:3ch">%</span></div><input class="range" id="f-slip" name="slip" type="range" min="5" max="60" step="1" value="25"></div>
+        <div class="field"><div class="field-top"><label for="f-hours">Manual hours a week</label><span class="val"><input id="o-hours" data-for="f-hours" inputmode="numeric" autocomplete="off" aria-label="Manual hours per week" style="--w:3ch"> hrs</span></div><input class="range" id="f-hours" name="hours" type="range" min="0" max="60" step="1" value="15"></div>
+        <div class="field"><div class="field-top"><label for="f-rate">Cost per hour</label><span class="val">$<input id="o-rate" data-for="f-rate" inputmode="numeric" autocomplete="off" aria-label="Cost of an hour in dollars" style="--w:4ch">/hr</span></div><input class="range" id="f-rate" name="rate" type="range" min="25" max="300" step="5" value="100"></div>
       </form>
       </div>
       <div class="panel result" aria-live="polite">
@@ -141,12 +138,12 @@
         <div class="result-num" id="rTotal">$0</div>
         <p class="result-yr" id="rYear"></p>
         <div class="bars">
-          <div><div class="bar-top"><span>Deals lost to missed follow-up</span><span id="rLost"></span></div><div class="bar"><i id="bLost"></i></div></div>
-          <div><div class="bar-top"><span>Time lost to manual work</span><span id="rOps"></span></div><div class="bar alt"><i id="bOps"></i></div></div>
+          <div><div class="bar-top"><span>Missed follow-up</span><span id="rLost"></span></div><div class="bar"><i id="bLost"></i></div></div>
+          <div><div class="bar-top"><span>Manual work</span><span id="rOps"></span></div><div class="bar alt"><i id="bOps"></i></div></div>
         </div>
         <p class="verdict" id="rVerdict"></p>
         <button class="btn btn-gold btn-block" data-lead="calculator">Audit My Real Number <svg aria-hidden="true"><use href="#arr"/></svg></button>
-        <details class="how"><summary>How this is calculated</summary><p>Leads × missed follow-up % × close rate × deal value, plus weekly hours × 4.33 × hourly cost. It’s an estimate from your inputs, not a promise of results.</p></details>
+        <details class="how"><summary>How this is calculated</summary><p>Leads × no follow-up % × close rate × deal value, plus hours × 4.33 × hourly cost. An estimate, not a promise.</p></details>
       </div>
     </div>
   </div>
@@ -156,7 +153,6 @@
   <div class="wrap">
     <div class="sys-head fx">
       <h2 class="h-lg">We don’t run campaigns. We build the systems that make them work.</h2>
-      <p class="lede">Here’s one lead moving through the system you’d have running.</p>
     </div>
     <div class="ch">
       <div class="ch-stage" aria-hidden="true">
@@ -174,9 +170,7 @@
           <div class="mock-top"><b>Priya N.</b><span class="tag ok">Replied in 4 sec</span></div>
           <div class="msgs">
             <p class="in">Do you work with multi-location practices?</p>
-            <p class="out">Yes, that’s most of who we help. How many new patient calls go unanswered in a typical week?</p>
-            <p class="in">Honestly? No idea. Maybe 15.</p>
-            <p class="out">That’s worth a look. Does Tuesday at 10:30 work for a short call?</p>
+            <p class="out">Yes. Does Tuesday at 10:30 work for a short call?</p>
           </div>
         </div>
         <div class="mock" data-m="2">
@@ -187,7 +181,7 @@
             <div><span>Wed</span><i></i><i></i><i></i></div>
             <div><span>Thu</span><i></i><i></i><i></i></div>
           </div>
-          <ul class="done-list"><li>Added to the rep’s calendar</li><li>Prep notes written from the thread</li><li>CRM updated. Nobody typed anything</li></ul>
+          <ul class="done-list"><li>On the calendar</li><li>CRM updated</li></ul>
         </div>
         <div class="mock" data-m="3">
           <div class="mock-top"><b>Revenue by source</b><span class="tag">This quarter</span></div>
@@ -197,15 +191,15 @@
             <li style="--w:39%"><span>Referrals</span><b>$14,900</b><i></i></li>
             <li style="--w:24%"><span>Podcast</span><b>$9,275</b><i></i></li>
           </ul>
-          <p class="src-foot">Every closed deal traced back to where it started.</p>
+          
         </div>
         <p class="mock-note">Example data</p>
       </div>
       <ol class="ch-steps">
-        <li class="on" data-s="0"><span>Capture</span><h3>Every lead lands in one place.</h3><p>Ads, website, referrals and DMs stop living in separate tools. You see who came in and why.</p></li>
-        <li data-s="1"><span>Follow up</span><h3>They get an answer in seconds.</h3><p>No follow-up depends on someone remembering. Your AI operative replies, qualifies and keeps the thread moving.</p></li>
-        <li data-s="2"><span>Book</span><h3>Good fits land on the calendar.</h3><p>Calls get booked, reminders go out, and the CRM updates itself. No data entry.</p></li>
-        <li data-s="3"><span>See it</span><h3>You know what’s actually working.</h3><p>Real-time visibility into what’s working, what’s broken, and what needs attention, before it becomes a crisis.</p></li>
+        <li class="on" data-s="0"><span>Capture</span><h3>Every lead, one place.</h3></li>
+        <li data-s="1"><span>Follow up</span><h3>Answered in seconds.</h3></li>
+        <li data-s="2"><span>Book</span><h3>Good fits get booked.</h3></li>
+        <li data-s="3"><span>See it</span><h3>See what’s working.</h3></li>
       </ol>
     </div>
   </div>
@@ -214,8 +208,8 @@
 <section class="sec" id="results">
   <div class="wrap">
     <div class="sec-head fx" style="margin-bottom:28px">
-      <h2 class="h-lg">Results, reported the way you’d want them.</h2>
-      <p class="ex-flag">Example case studies. Replace with real client results before launch.</p>
+      <h2 class="h-lg">Results</h2>
+      <p class="ex-flag">Examples only. Real client results go here.</p>
     </div>
     <div class="tabs" role="tablist" aria-label="Example case studies">
       <button role="tab" id="t0" aria-controls="p0" aria-selected="true">Home services</button>
@@ -225,10 +219,8 @@
     <article class="case" role="tabpanel" id="p0" aria-labelledby="t0" tabindex="0">
       <div class="case-l">
         <span class="ex-tag">Example, not a real client</span>
-        <h3>A regional roofing company answering leads the next day.</h3>
-        <h4>The leak</h4><p>Forms went to one inbox. The owner called back when possible, usually the next day, and most leads had already booked someone else.</p>
-        <h4>What we installed</h4><ul><li>Lead &amp; Pipeline Operative on every form and missed call</li><li>Automatic quote follow-up for 14 days</li><li>Owner dashboard by source</li></ul>
-      </div>
+        <h3>Roofing company</h3>
+              </div>
       <div class="case-r">
         <div class="met"><span>First response</span><b>3 min</b><small>was 19 hrs</small></div>
         <div class="met"><span>Booked estimates</span><b>41 /mo</b><small>was 17</small></div>
@@ -239,10 +231,8 @@
     <article class="case" role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0" hidden>
       <div class="case-l">
         <span class="ex-tag">Example, not a real client</span>
-        <h3>A founder-led consultancy where every deal ran through the founder.</h3>
-        <h4>The leak</h4><p>Referrals were strong, but proposals and follow-ups lived in the founder’s head. Deals stalled whenever client work got busy.</p>
-        <h4>What we installed</h4><ul><li>Workflow Operatives connecting CRM, email and proposals</li><li>Qualification before the founder’s calendar</li><li>Weekly pipeline report, written automatically</li></ul>
-      </div>
+        <h3>Founder-led consultancy</h3>
+              </div>
       <div class="case-r">
         <div class="met"><span>Founder time on sales admin</span><b>7 hrs/wk</b><small>was 26</small></div>
         <div class="met"><span>Proposal turnaround</span><b>1 day</b><small>was 9</small></div>
@@ -253,10 +243,8 @@
     <article class="case" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
       <div class="case-l">
         <span class="ex-tag">Example, not a real client</span>
-        <h3>An online coach with plenty of attention and too few booked calls.</h3>
-        <h4>The leak</h4><p>Hundreds of DMs and comments a month, answered by hand. Good prospects went quiet because nobody got back to them in time.</p>
-        <h4>What we installed</h4><ul><li>DM and comment capture into one pipeline</li><li>AI qualification with a booking link for good fits</li><li>Show-up reminders by text and email</li></ul>
-      </div>
+        <h3>Online coach</h3>
+              </div>
       <div class="case-r">
         <div class="met"><span>Booked calls</span><b>58 /mo</b><small>was 22</small></div>
         <div class="met"><span>Show-up rate</span><b>74%</b><small>was 46%</small></div>
@@ -264,7 +252,7 @@
         <div class="trend" style="--a:22%;--b:29%;--c:43%;--d:52%;--e:60%;--f:83%;--g:90%"><p>Booked calls over 90 days</p><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
       </div>
     </article>
-    <div class="sec-foot"><p style="color:var(--muted)">Want this report for your business?</p><button class="btn btn-gold" data-lead="results">Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
+    <div class="sec-foot"><span></span><button class="btn btn-gold" data-lead="results">Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
   </div>
 </section>
 
@@ -272,14 +260,13 @@
   <div class="wrap">
     <div class="sec-head fx" style="margin-bottom:32px">
       <h2 class="h-lg">Infrastructure for Scalable Growth</h2>
-      <p class="lede">Start with the problem. Pick the one that sounds like you and the audit starts there.</p>
     </div>
     <div class="rows fx">
-      <button class="row" data-lead="svc-paid" data-neck="pipeline"><small>Ads that don’t pay back</small><h3>Paid Media Strategy</h3><p>Multi-channel advertising frameworks that acquire customers profitably at scale.</p><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-leads" data-neck="pipeline"><small>A pipeline you can’t predict</small><h3>Lead Acquisition</h3><p>Predictable, qualified pipelines tailored to high-ticket B2B and enterprise partnerships.</p><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-cro" data-neck="visibility"><small>Traffic that doesn’t convert</small><h3>Conversion Optimization</h3><p>We rebuild your customer journey to eliminate friction and maximize average order value.</p><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-ai" data-neck="manual-ops"><small>Work a machine should be doing</small><h3>AI Workflows</h3><p>Replace manual operational bottlenecks with intelligent, 24/7 automation agents.</p><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
-      <button class="row" data-lead="svc-brand" data-neck="founder"><small>Prospects who don’t trust you yet</small><h3>Brand Authority</h3><p>Authoritative content loops and social presence that build deep market trust.</p><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
+      <button class="row" data-lead="svc-paid" data-neck="pipeline"><small>Ads that don’t pay back</small><h3>Paid Media Strategy</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
+      <button class="row" data-lead="svc-leads" data-neck="pipeline"><small>A pipeline you can’t predict</small><h3>Lead Acquisition</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
+      <button class="row" data-lead="svc-cro" data-neck="visibility"><small>Traffic that doesn’t convert</small><h3>Conversion Optimization</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
+      <button class="row" data-lead="svc-ai" data-neck="manual-ops"><small>Work a machine should be doing</small><h3>AI Workflows</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
+      <button class="row" data-lead="svc-brand" data-neck="founder"><small>Prospects who don’t trust you yet</small><h3>Brand Authority</h3><svg class="row-go" aria-hidden="true"><use href="#arr"/></svg></button>
     </div>
   </div>
 </section>
@@ -288,13 +275,13 @@
   <div class="wrap">
     <div class="sec-head fx" style="margin-bottom:0">
       <h2 class="h-lg">From Fragmented to Structured</h2>
-      <p class="lede">Book a call and we’ll build that system in the next 30 days.</p>
+      <p class="lede">Built in 30 days.</p>
     </div>
     <ol class="rail">
-      <li><b>01</b><h3 class="h-md">Diagnose</h3><p>We audit your operations, identify bottlenecks, and map the exact systems costing you time and money.</p></li>
-      <li><b>02</b><h3 class="h-md">Design</h3><p>We design a custom growth infrastructure for your business model, revenue stage, and operational reality.</p></li>
-      <li><b>03</b><h3 class="h-md">Deploy</h3><p>We implement it directly into your business, integrate your tools, and train your team to run it.</p></li>
-      <li><b>04</b><h3 class="h-md">Optimize</h3><p>We monitor performance, refine workflows, and keep improving the system so results compound.</p></li>
+      <li><b>01</b><h3 class="h-md">Diagnose</h3></li>
+      <li><b>02</b><h3 class="h-md">Design</h3></li>
+      <li><b>03</b><h3 class="h-md">Deploy</h3></li>
+      <li><b>04</b><h3 class="h-md">Optimize</h3></li>
     </ol>
   </div>
 </section>
@@ -302,17 +289,15 @@
 <section class="sec forge-band" id="forge">
   <div class="wrap split" style="align-items:start">
     <div class="fx">
-      <span class="eyebrow">Our implementation division</span>
-      <h2 class="h-lg" style="margin-top:12px">Meet Forge AI</h2>
-      <p class="lede" style="margin-top:18px">Elite Edge Collective designs the growth strategy. Forge AI installs the automation and AI operatives directly into your business.</p>
+      <h2 class="h-lg">Meet Forge AI</h2>
+      <p class="lede" style="margin-top:14px">We install the AI operatives that run it.</p>
       <div class="hero-cta"><a class="btn btn-gold" href="forge-ai/index.html">Explore Forge AI <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
-      <p class="hero-note">Limited to 5 audits per month, so every audit is actually useful.</p>
     </div>
     <ul class="ops fx" style="margin-top:0">
-      <li><b>Lead &amp; Pipeline Operatives</b><span>No lead goes cold because someone forgot to follow up.</span></li>
-      <li><b>Workflow Operatives</b><span>Your disconnected tools, unified.</span></li>
-      <li><b>Operations Operatives</b><span>Your SOPs stop living in people’s heads.</span></li>
-      <li><b>Visibility Operatives</b><span>See what’s broken before it becomes a crisis.</span></li>
+      <li><b>Lead &amp; Pipeline</b></li>
+      <li><b>Workflow</b></li>
+      <li><b>Operations</b></li>
+      <li><b>Visibility</b></li>
     </ul>
   </div>
 </section>
@@ -321,17 +306,15 @@
   <div class="wrap">
     <div class="sec-head fx">
       <span class="eyebrow">The Executive Edge Podcast</span>
-      <h2 class="h-lg" style="margin-top:10px">Founders on what actually worked.</h2>
-      <p class="lede">Join Kamal Holmes as he breaks down the operational strategies working right now for 8-figure businesses.</p>
+      <h2 class="h-lg" style="margin-top:10px">What actually worked.</h2>
     </div>
     <div class="eps">
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep1-elizabeth-power.webp" width="720" height="405" alt="Episode 1 cover: Elizabeth Power"></div><div class="ep-b"><span class="mono">EP 1</span><h3>Why Emotional Intelligence Matters More Than IQ</h3><p>Elizabeth Power, M.Ed., Founder, The Trauma Informed Academy</p></div></a>
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep2-stacy-wig.webp" width="720" height="405" alt="Episode 2 cover: Stacy Wig"></div><div class="ep-b"><span class="mono">EP 2</span><h3>From Burnout to CEO: How She Rebuilt Her Life at 55</h3><p>Stacy Wig, CEO, Fitzone Personal Training</p></div></a>
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep3-casey-fox.webp" width="720" height="405" alt="Episode 3 cover: Casey Fox"></div><div class="ep-b"><span class="mono">EP 3</span><h3>How He Turned Athletes Into AI Engineers and Beat Offshore Consulting</h3><p>Casey Fox, Co-Founder &amp; CTO, Tekletics</p></div></a>
-      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep4-sahara-de-vore.webp" width="720" height="405" alt="Episode 4 cover: Sahara De Vore"></div><div class="ep-b"><span class="mono">EP 4</span><h3>She Turned 84 Countries Into a New Industry</h3><p>Sahara De Vore, Founder &amp; CEO, The Travel Coach Network</p></div></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep1-elizabeth-power.webp" width="720" height="405" alt="Episode 1 cover: Elizabeth Power"></div><div class="ep-b"><span class="mono">EP 1</span><h3>Elizabeth Power</h3></div></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep2-stacy-wig.webp" width="720" height="405" alt="Episode 2 cover: Stacy Wig"></div><div class="ep-b"><span class="mono">EP 2</span><h3>Stacy Wig</h3></div></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep3-casey-fox.webp" width="720" height="405" alt="Episode 3 cover: Casey Fox"></div><div class="ep-b"><span class="mono">EP 3</span><h3>Casey Fox</h3></div></a>
+      <a class="ep fx" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener"><div class="ep-img"><img loading="lazy" decoding="async" src="assets/img/ep4-sahara-de-vore.webp" width="720" height="405" alt="Episode 4 cover: Sahara De Vore"></div><div class="ep-b"><span class="mono">EP 4</span><h3>Sahara De Vore</h3></div></a>
     </div>
-    <div class="sec-foot">
-      <ul class="pod-tags"><li>10+ episodes</li><li>Weekly uploads</li><li>100% actionable</li></ul>
+    <div class="sec-foot"><span></span>
       <a class="btn" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener">Watch on YouTube <svg aria-hidden="true"><use href="#arr"/></svg></a>
     </div>
   </div>
@@ -341,31 +324,18 @@
   <div class="wrap faq-grid">
     <div class="fx"><h2 class="h-lg">Before you book</h2></div>
     <div class="faq fx">
-      <details open><summary>Is the audit really free?</summary><p>Yes. Fee: $0. We show you exactly where you’re losing money. No pitch, no fluff. The value depends on whether you’re serious.</p></details>
-      <details><summary>Will you try to sell me on the call?</summary><p>No pitch. No fluff. We show you where the money is going. If you want help fixing it, we can talk about that. If not, you keep the answers.</p></details>
-      <details><summary>What do I leave with?</summary><p>A clear map of your bottlenecks and the exact systems costing you time and money, so you know what to fix first.</p></details>
-      <details><summary>Who is this for?</summary><p>Founder-led businesses with proven product-market fit whose operations are too manual and reactive, and teams that depend on people instead of systems.</p></details>
-      <details><summary>How is Forge AI different from Elite Edge Collective?</summary><p>Elite Edge Collective designs the overarching growth strategy. Forge AI is the division that installs the automation and AI operatives inside your business.</p></details>
-      <details><summary>Do I have to manage the build?</summary><p>No. We build it, test it and install it directly into your business. You receive the keys.</p></details>
+      <details open><summary>Is the audit really free?</summary><p>Yes. Fee: $0.</p></details>
+      <details><summary>Will you pitch me?</summary><p>No. You get straight answers and keep them.</p></details>
+      <details><summary>Who is this for?</summary><p>Founder-led businesses with manual operations.</p></details>
+      <details><summary>Do I manage the build?</summary><p>No. You receive the keys.</p></details>
     </div>
   </div>
 </section>
 
 <section class="sec final">
   <div class="wrap final-in">
-    <div>
-      <h2 class="h-xl">Growth doesn’t scale without structure.</h2>
-      <p class="lede">Stop letting manual work and fragmented systems dictate your ceiling.</p>
-    </div>
-    <div>
-      <ol class="next">
-        <li>Answer two quick questions.</li>
-        <li>Pick a time for your diagnostic call.</li>
-        <li>Leave knowing exactly where you’re losing money.</li>
-      </ol>
-      <div class="hero-cta"><button class="btn btn-gold" data-lead="final" data-personal>Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
-      <p class="hero-note" style="color:#3a2f00"><b style="color:#0a0a0a">Fee: $0.</b> Value depends on whether you’re serious.</p>
-    </div>
+    <h2 class="h-xl">Growth doesn’t scale without structure.</h2>
+    <button class="btn btn-gold" data-lead="final" data-personal>Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button>
   </div>
 </section>
 </main>
@@ -373,7 +343,7 @@
 <footer class="foot">
   <div class="wrap">
     <div class="foot-grid">
-      <div><img loading="lazy" src="assets/img/logo.webp" width="420" height="83" alt="Elite Edge Collective"><p>Strategic growth design and revenue operations for modern businesses. We turn scattered activity into scalable systems.</p></div>
+      <div><img loading="lazy" src="assets/img/logo.webp" width="420" height="83" alt="Elite Edge Collective"></div>
       <div><h2>Explore</h2><ul><li><a href="#calculator">Leak Calculator</a></li><li><a href="#services">Services</a></li><li><a href="#podcast">Podcast</a></li><li><a href="forge-ai/index.html">Forge AI</a></li></ul></div>
       <div><h2>Contact</h2><ul><li><a href="mailto:eliteedgellc@eliteedgeinfluence.com">eliteedgellc@eliteedgeinfluence.com</a></li><li>Minnesota, USA</li><li><a href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener">YouTube</a></li><li><a href="https://www.linkedin.com/in/kamalholmes/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://www.instagram.com/k_melly97" target="_blank" rel="noopener">Instagram</a></li></ul></div>
     </div>
@@ -424,6 +394,6 @@
   </div>
 </dialog>
 
-<script src="assets/js/site.js?v=ccfee286" defer></script>
+<script src="assets/js/site.js?v=e5ffcfa8" defer></script>
 </body>
 </html>

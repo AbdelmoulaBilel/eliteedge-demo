@@ -117,14 +117,13 @@
       for (var i = 0; i < path.length; i++) {
         var p = path[i], el = cols[p[0]].children[0];
         if (!el || cols[p[1]].children.length >= MAX + (p[1] === "won" ? 1 : 0)) continue;
-        if (p[0] === "qual" && (el.value_ % 7) === 0) { setNote(el, "Not a fit", ""); drop(el); break; }
+        if (p[0] === "qual" && (el.value_ % 7) === 0) { setNote(el, "Not a fit", ""); drop(el); continue; }
         move(el, p[1]); setNote(el, p[2], "good");
         if (p[1] === "won") { won += el.value_; if (cols.won.children.length > MAX) cols.won.children[0].remove(); }
-        break;
       }
     }
     function step() { spawn(); (on ? tickOn : tickOff)(); counts(); }
-    function loop() { clearTimeout(timer); if (!seen || document.hidden || calm) return; step(); timer = setTimeout(loop, on ? 900 : 1150); }
+    function loop() { clearTimeout(timer); if (!seen || document.hidden || calm) return; step(); timer = setTimeout(loop, on ? 1000 : 1150); }
     /* starting board */
     card("new", ""); card("follow", "Waiting"); card("qual", ""); card("book", ""); var w = card("won", ""); won = w.value_; counts();
     function set(v, how) {
@@ -169,8 +168,8 @@
       r1.textContent = money(lost) + "/mo"; r2.textContent = money(ops) + "/mo";
       b1.style.transform = "scaleX(" + lost / top + ")"; b2.style.transform = "scaleX(" + ops / top + ")";
       verdict.innerHTML = lost >= ops
-        ? "<b>Biggest leak: follow-up.</b> Start with Lead &amp; Pipeline Operatives, so no lead waits on someone remembering."
-        : "<b>Biggest leak: manual work.</b> Start with Workflow Operatives, so your time stops going to work a system should do.";
+        ? "<b>Biggest leak: follow-up.</b>"
+        : "<b>Biggest leak: manual work.</b>";
       lastLeak = Math.round(total);
       if (leakTouched) $$("[data-personal]").forEach(function (b) { var s = $("span", b) || b; if (!b.dataset.base) { b.dataset.base = "1"; b.innerHTML = "<span></span>" + ($("svg", b) ? $("svg", b).outerHTML : ""); s = $("span", b); } s.textContent = "Audit My " + money(lastLeak) + "/mo Leak"; });
     }
@@ -213,8 +212,8 @@
     var dlg = $("#lead"); if (!dlg) return;
     var form = $("form", dlg), steps = $$("[data-step]", dlg), bars = $$(".lead-prog i", dlg), title = $("#leadTitle"), sub = $("#leadSub"), pill = $("#leakPill"), started = false, n = 0, kind = "strategy";
     var COPY = {
-      strategy: ["Get your free leak audit", "Two quick steps. We’ll show you exactly where you’re losing money."],
-      forge: ["Book a free AI Operative Audit", "Let’s find out exactly how much time we can save you."]
+      strategy: ["Get your free leak audit", "Two quick steps."],
+      forge: ["Book a free AI Operative Audit", "Two quick steps."]
     };
     function show(i) {
       n = i;
@@ -225,7 +224,7 @@
     function open(src, type) {
       kind = type || (document.body.classList.contains("forge") ? "forge" : "strategy");
       title.textContent = COPY[kind][0]; sub.textContent = COPY[kind][1];
-      if (lastLeak && leakTouched) { pill.hidden = false; pill.innerHTML = "Your estimate: <b>" + money(lastLeak) + "/mo</b> leaking. We’ll check it against your real numbers."; } else pill.hidden = true;
+      if (lastLeak && leakTouched) { pill.hidden = false; pill.innerHTML = "Your estimate: <b>" + money(lastLeak) + "/mo</b> leaking."; } else pill.hidden = true;
       form.reset(); $$(".err", form).forEach(function (e) { e.textContent = ""; }); $$("[aria-invalid]", form).forEach(function (e) { e.removeAttribute("aria-invalid"); });
       started = false; show(0);
       var gap = innerWidth - document.documentElement.clientWidth; dlg.showModal();
