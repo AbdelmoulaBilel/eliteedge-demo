@@ -76,107 +76,68 @@
   }
   if (rails.length) { addEventListener("scroll", function () { requestAnimationFrame(railTick); }, { passive: true }); addEventListener("resize", railTick); railTick(); }
 
-  /* ---------- Hero: the leaking pipeline ---------- */
-  (function pipe() {
-    var cv = $("#pipe"); if (!cv) return;
-    var sw = $("#pipeSwitch"), stat = $("#pipeStat"), wrapStat = $("#riverStat"), ctx = cv.getContext("2d");
-    var on = false, W = 0, H = 0, dpr = 1, y0 = 0, x0 = 0, x1 = 0, pw = 15, endW = 150, small = false, gates = [], parts = [], outcomes = [], last = 0, spawn = 0, glow = 0, running = false, seen = true, every = .05, heal = 0;
-    var LEAK = .3, FIT = .24, NAMES = ["Follow-up", "Qualified", "Booked"];
-    for (var i = 0; i < 100; i++) outcomes.push(i % 3 ? 1 : 0); /* 1 = lost */
-
-    function size() {
-      var r = cv.getBoundingClientRect(), wr = $(".wrap", cv.parentNode), st = getComputedStyle(wr);
-      dpr = Math.min(devicePixelRatio || 1, 2); W = r.width; H = r.height;
-      cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      small = W < 640; pw = small ? 11 : 16; endW = small ? 78 : 158; every = small ? .07 : .045;
-      x0 = wr.getBoundingClientRect().left + parseFloat(st.paddingLeft);
-      x1 = W - x0 - endW; y0 = Math.round(H * .4);
-      gates = [.3, .56, .82].map(function (f) { return x0 + (x1 - x0) * f; });
-      if (calm) paintStill();
+  /* ---------- Hero: live pipeline board ---------- */
+  (function board() {
+    var root = $("#board"); if (!root) return;
+    var sw = $("#pipeSwitch"), lostEl = $("#bLostNow"), wonEl = $("#bWonNow"), ORDER = ["new", "follow", "qual", "book", "won"], MAX = 3;
+    var LEADS = [["Priya N.", "Dental group", 4800], ["Marcus T.", "HVAC", 2650], ["Elena R.", "Law firm", 7200], ["Jordan K.", "SaaS", 9400], ["Tasha B.", "Med spa", 3150], ["Owen L.", "Roofing", 5750], ["Dara M.", "Agency", 6300], ["Victor S.", "Logistics", 8900], ["Noor A.", "Clinic", 4150], ["Caleb W.", "Fintech", 11200]];
+    var on = false, lost = 0, won = 0, next = 0, timer = 0, seen = true, touched = false;
+    var cols = {}; ORDER.forEach(function (k) { cols[k] = $("[data-col=" + k + "] .col", root); });
+    function card(col, note, cls) {
+      var d = LEADS[next++ % LEADS.length], el = document.createElement("div");
+      el.className = "lc"; el.value_ = d[2];
+      el.innerHTML = "<b></b><s></s><span></span><u></u>";
+      el.children[0].textContent = d[0]; el.children[1].textContent = money(d[2]); el.children[2].textContent = d[1];
+      cols[col].appendChild(el); setNote(el, note, cls); return el;
     }
-    function make() { return { x: x0, y: y0 + (Math.random() - .5) * pw * 1.5, vx: (small ? 120 : 190) + Math.random() * 70, vy: 0, g: 0, kind: 0, a: 1, r: 2 + Math.random() * 1.6 }; }
-    function push(lost) { outcomes.push(lost ? 1 : 0); outcomes.shift(); }
-    function lostNow() { var s = 0; for (var i = 0; i < 100; i++) s += outcomes[i]; return s; }
-    function step(dt) {
-      spawn += dt; while (spawn > every) { spawn -= every; parts.push(make()); }
-      glow += ((on ? 1 : 0) - glow) * Math.min(1, dt * 3);
-      if (on) { heal += dt * 45; while (heal >= 1) { heal -= 1; var at = outcomes.indexOf(1); if (at > -1) outcomes[at] = 0; } }
-      for (var i = parts.length - 1; i >= 0; i--) {
-        var p = parts[i];
-        if (p.kind) { /* 1 leaking, 2 sorted out on purpose */
-          if (p.kind === 1) p.vy += 340 * dt;
-          p.x += p.vx * dt; p.y += p.vy * dt; p.a -= dt * (p.kind === 1 ? .55 : 1.1);
-          if (p.a <= 0 || p.y > H + 6) parts.splice(i, 1);
-          continue;
-        }
-        p.x += p.vx * dt;
-        if (p.g < gates.length && p.x >= gates[p.g]) {
-          if (!on && Math.random() < LEAK) { p.kind = 1; p.vx *= .22; p.vy = 30 + Math.random() * 50; p.y = y0 + pw; push(true); continue; }
-          if (on && p.g === 1 && Math.random() < FIT) { p.kind = 2; p.vx *= .16; p.vy = 34; p.y = y0 + pw; push(false); continue; }
-          p.g++;
-        }
-        if (p.x >= x1) { parts.splice(i, 1); push(false); }
+    function setNote(el, text, cls) { el.classList.remove("stall", "good"); if (cls) el.classList.add(cls); el.children[3].textContent = text || ""; }
+    function counts() {
+      ORDER.forEach(function (k) { $("[data-col=" + k + "] em", root).textContent = cols[k].children.length; });
+      lostEl.textContent = money(lost); wonEl.textContent = money(won);
+    }
+    function move(el, to) { /* slide the card from where it was to where it lands */
+      var a = el.getBoundingClientRect(); cols[to].appendChild(el); var b = el.getBoundingClientRect();
+      if (!calm && a.width && b.width && el.animate) el.animate([{ transform: "translate(" + (a.left - b.left) + "px," + (a.top - b.top) + "px)" }, { transform: "none" }], { duration: 520, easing: "cubic-bezier(.2,.7,.2,1)" });
+    }
+    function drop(el) { el.classList.add("out"); setTimeout(function () { el.remove(); counts(); }, calm ? 0 : 460); }
+    function spawn() { if (cols.new.children.length < 2) card("new", on ? "" : "Waiting"); }
+    function tickOff() {
+      var stalled = $(".lc.stall", root);
+      if (stalled) { lost += stalled.value_; drop(stalled); }
+      else {
+        var f = cols.follow.children[0];
+        if (f) setNote(f, "No reply in 3 days", "stall");
+        else if (cols.new.children[0]) move(cols.new.children[0], "follow");
+      }
+      if (Math.random() < .35 && cols.new.children[0] && cols.follow.children.length < MAX) move(cols.new.children[0], "follow");
+    }
+    function tickOn() {
+      $$(".lc", root).forEach(function (el) { if (el.classList.contains("stall")) setNote(el, "Replied in 4 sec", "good"); else if (el.children[3].textContent === "Waiting") setNote(el, ""); });
+      var path = [["book", "won", "Closed"], ["qual", "book", "Call booked"], ["follow", "qual", "Fit confirmed"], ["new", "follow", "Replied in 4 sec"]];
+      for (var i = 0; i < path.length; i++) {
+        var p = path[i], el = cols[p[0]].children[0];
+        if (!el || cols[p[1]].children.length >= MAX + (p[1] === "won" ? 1 : 0)) continue;
+        if (p[0] === "qual" && (el.value_ % 7) === 0) { setNote(el, "Not a fit", ""); drop(el); break; }
+        move(el, p[1]); setNote(el, p[2], "good");
+        if (p[1] === "won") { won += el.value_; if (cols.won.children.length > MAX) cols.won.children[0].remove(); }
+        break;
       }
     }
-    function draw() {
-      ctx.clearRect(0, 0, W, H);
-      var a = glow;
-      ctx.lineWidth = 1.5;
-      /* pipe runs in from the edge of the screen */
-      [[y0 - pw], [y0 + pw]].forEach(function (y) {
-        ctx.strokeStyle = "rgba(244,241,232," + (.3 - .3 * a) + ")"; ctx.beginPath(); ctx.moveTo(0, y[0]); ctx.lineTo(x1, y[0]); ctx.stroke();
-        if (a > .01) { ctx.strokeStyle = "rgba(0,212,255," + a * .85 + ")"; ctx.beginPath(); ctx.moveTo(0, y[0]); ctx.lineTo(x1, y[0]); ctx.stroke(); }
-      });
-      ctx.textBaseline = "middle"; ctx.font = "500 " + (small ? 11 : 12) + "px JetBrains, monospace";
-      ctx.textAlign = "left"; ctx.fillStyle = "rgba(244,241,232,.72)"; if (!small) ctx.fillText("New leads", x0, y0 - pw - 16);
-      ctx.textAlign = "center";
-      gates.forEach(function (x, n) {
-        ctx.fillStyle = "rgba(244,241,232,.72)"; ctx.fillText(NAMES[n], x, y0 - pw - 16);
-        ctx.lineWidth = 2;
-        if (a > .5) { ctx.strokeStyle = "rgba(0,212,255,.9)"; ctx.beginPath(); ctx.moveTo(x, y0 - pw - 5); ctx.lineTo(x, y0 + pw + 5); ctx.stroke(); }
-        else { ctx.strokeStyle = "#ff6a3d"; ctx.fillStyle = "#070707"; ctx.fillRect(x - 7, y0 + pw - 2, 14, 4); ctx.beginPath(); ctx.moveTo(x - 9, y0 + pw); ctx.lineTo(x - 4, y0 + pw + 5); ctx.lineTo(x, y0 + pw - 1); ctx.lineTo(x + 4, y0 + pw + 5); ctx.lineTo(x + 9, y0 + pw); ctx.stroke(); }
-      });
-      if (a > .5) { ctx.fillStyle = "rgba(174,170,158," + (a - .5) * 2 + ")"; ctx.fillText(small ? "Not a fit" : "Not a fit: sorted, not lost", gates[1], Math.min(y0 + pw + 66, H - 12)); }
-      /* the end of the pipe */
-      var fill = 1 - lostNow() / 100;
-      ctx.fillStyle = "rgba(255,193,5," + (.08 + .3 * fill) + ")"; rr(x1, y0 - 24, endW, 48, 8); ctx.fill();
-      ctx.strokeStyle = "#ffc105"; ctx.lineWidth = 1.5; rr(x1, y0 - 24, endW, 48, 8); ctx.stroke();
-      ctx.fillStyle = "#ffdc6b"; ctx.font = "600 " + (small ? 11 : 13) + "px JetBrains, monospace"; ctx.fillText(small ? "Revenue" : "Closed revenue", x1 + endW / 2, y0);
-      parts.forEach(function (p) {
-        ctx.globalAlpha = Math.max(p.a, 0);
-        ctx.fillStyle = p.kind === 1 ? "#ff6a3d" : p.kind === 2 ? "#aeaa9e" : (a > .5 ? "#7fe9ff" : "#ffc105");
-        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, 6.3); ctx.fill();
-      });
-      ctx.globalAlpha = 1;
-    }
-    function rr(x, y, w, h, r) { ctx.beginPath(); if (ctx.roundRect) ctx.roundRect(x, y, w, h, r); else ctx.rect(x, y, w, h); }
-    var shown = -1;
-    function writeStat() { var n = lostNow(); if (n !== shown) { shown = n; stat.textContent = n + " of 100"; wrapStat.classList.toggle("ok", n === 0); } }
-    function frame(t) {
-      if (!seen || document.hidden) { running = false; return; }
-      var dt = Math.min((t - last) / 1000, .05); last = t;
-      step(dt); draw(); writeStat(); requestAnimationFrame(frame);
-    }
-    function start() { if (!running && !calm) { running = true; last = performance.now(); requestAnimationFrame(frame); } }
-    function paintStill() {
-      parts = []; outcomes = outcomes.map(function (_, i) { return on ? 0 : (i % 3 ? 1 : 0); });
-      glow = on ? 1 : 0; draw(); writeStat();
-    }
+    function step() { spawn(); (on ? tickOn : tickOff)(); counts(); }
+    function loop() { clearTimeout(timer); if (!seen || document.hidden || calm) return; step(); timer = setTimeout(loop, on ? 900 : 1150); }
+    /* starting board */
+    card("new", ""); card("follow", "Waiting"); card("qual", ""); card("book", ""); var w = card("won", ""); won = w.value_; counts();
     function set(v, how) {
       on = v; sw.setAttribute("aria-checked", on); sw.classList.remove("hint");
       if (how === "click") track("hero_system_toggle", { source: on ? "on" : "off" });
-      if (calm) paintStill();
+      if (calm) { step(); }
     }
-    var touched = false;
     sw.addEventListener("click", function () { touched = true; set(!on, "click"); });
-    if (!calm) setTimeout(function () { if (!touched) set(true, "auto"); }, 8000);
-    addEventListener("resize", size);
-    if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (calm) paintStill(); });
-    size();
     if (!calm) {
-      new IntersectionObserver(function (e) { seen = e[0].isIntersecting; if (seen) start(); }).observe(cv);
-      document.addEventListener("visibilitychange", start);
-      start();
+      setTimeout(function () { if (!touched) set(true, "auto"); }, 11000);
+      new IntersectionObserver(function (e) { var was = seen; seen = e[0].isIntersecting; if (seen && !was) loop(); }).observe(root);
+      document.addEventListener("visibilitychange", function () { if (!document.hidden) loop(); });
+      timer = setTimeout(loop, 700);
     }
   })();
 
@@ -314,40 +275,36 @@
     var cal = $("#calLink"); if (cal) cal.addEventListener("click", function () { track("calendar_open", { source: kind }); });
   })();
 
-  /* ---------- Scroll scenes ---------- */
-  (function scenes() {
-    var map = $("#sysMap"), states = $$(".sys-state");
-    function setState(s) { states.forEach(function (el) { el.style.opacity = +el.dataset.s === s ? 1 : 0; el.setAttribute("aria-hidden", +el.dataset.s !== s); }); }
-    if (!window.gsap || !window.ScrollTrigger || calm) { if (map) setState(1); return; }
-    gsap.registerPlugin(ScrollTrigger);
-    document.documentElement.classList.add("has-gsap");
-    var mm = gsap.matchMedia();
+  /* ---------- System: the step in the middle of the screen picks the screen ---------- */
+  (function chapters() {
+    var steps = $$(".ch-steps li"), mocks = $$(".mock"); if (!steps.length) return;
+    function pick(n) {
+      steps.forEach(function (s, i) { s.classList.toggle("on", i === n); });
+      mocks.forEach(function (m, i) { m.classList.toggle("on", i === n); });
+    }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) pick(+e.target.dataset.s); });
+    }, { rootMargin: innerWidth < 960 ? "-55% 0px -35% 0px" : "-46% 0px -46% 0px" });
+    steps.forEach(function (s) { io.observe(s); });
+  })();
 
-    function buildSys() {
-      var nodes = $$(".node", map), wires = $$(".wire", map), core = $("#sysCore", map);
-      var scatter = [[-60, -30, -14], [40, -46, 11], [66, 44, -9], [-26, 60, 15], [-78, 34, 8], [52, -8, -16]];
-      var tl = gsap.timeline({ paused: true });
-      gsap.set(wires, { strokeDasharray: 1, strokeDashoffset: 1 });
-      gsap.set(core, { opacity: 0, scale: .7, transformOrigin: "50% 50%" });
-      nodes.forEach(function (n, i) { gsap.set(n, { x: scatter[i][0], y: scatter[i][1], rotation: scatter[i][2], transformOrigin: "50% 50%", opacity: .72 }); });
-      tl.to(nodes, { x: 0, y: 0, rotation: 0, opacity: 1, duration: 1, ease: "power3.inOut", stagger: .05 })
-        .to(core, { opacity: 1, scale: 1, duration: .5, ease: "back.out(1.7)" }, "-=.35")
-        .to(wires, { strokeDashoffset: 0, duration: .6, ease: "none", stagger: .05 }, "-=.15");
-      return tl;
-    }
-    if (map) {
-      mm.add("(min-width:960px)", function () {
-        var tl = buildSys();
-        ScrollTrigger.create({
-          trigger: ".sys-in", start: "top top", end: "+=130%", pin: true, scrub: .6, animation: tl,
-          onUpdate: function (s) { setState(s.progress > .5 ? 1 : 0); }
-        });
+  /* ---------- Example case study tabs ---------- */
+  (function tabs() {
+    var ts = $$("[role=tab]"); if (!ts.length) return;
+    function show(i, focus) {
+      ts.forEach(function (t, k) {
+        var sel = k === i; t.setAttribute("aria-selected", sel); t.tabIndex = sel ? 0 : -1;
+        $("#" + t.getAttribute("aria-controls")).hidden = !sel;
       });
-      mm.add("(max-width:959.98px)", function () {
-        var tl = buildSys(); tl.timeScale(.72);
-        ScrollTrigger.create({ trigger: map, start: "top 72%", once: true, onEnter: function () { tl.play(); setTimeout(function () { setState(1); }, 900); } });
-      });
+      if (focus) ts[i].focus();
+      track("case_study_view", { source: ts[i].textContent });
     }
-    addEventListener("load", function () { ScrollTrigger.refresh(); });
+    ts.forEach(function (t, i) {
+      t.addEventListener("click", function () { show(i); });
+      t.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowRight") show((i + 1) % ts.length, true);
+        if (e.key === "ArrowLeft") show((i + ts.length - 1) % ts.length, true);
+      });
+    });
   })();
 })();

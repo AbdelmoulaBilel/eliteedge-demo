@@ -25,7 +25,7 @@
 <link rel="icon" href="assets/img/favicon.png">
 <link rel="preload" href="assets/fonts/playfair-display-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/inter-tight-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/site.css?v=ae6bfec9">
+<link rel="stylesheet" href="assets/css/site.css?v=e6b872f5">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
@@ -52,8 +52,8 @@
     <nav class="nav-links" aria-label="Main">
       <a href="#calculator">Leak Calculator</a>
       <a href="#system">The System</a>
+      <a href="#results">Results</a>
       <a href="#services">Services</a>
-      <a href="#process">Process</a>
       <a href="#podcast">Podcast</a>
       <a href="forge-ai/index.html">Forge AI</a>
     </nav>
@@ -63,8 +63,8 @@
   <div class="nav-drawer">
     <a href="#calculator">Leak Calculator</a>
     <a href="#system">The System</a>
+    <a href="#results">Results</a>
     <a href="#services">Services</a>
-    <a href="#process">Process</a>
     <a href="#podcast">Podcast</a>
     <a href="forge-ai/index.html">Forge AI</a>
     <button class="btn btn-gold btn-block" data-lead="nav-mobile">Get My Free Audit</button>
@@ -87,19 +87,42 @@
         <p class="hero-note"><b>Fee: $0.</b> No pitch. No fluff. Straight answers.</p>
       </div>
     </div>
-  </div>
-  <div class="river">
-    <canvas id="pipe" role="img" aria-label="Simulation of leads flowing through a pipeline. Without a system, leads leak out at follow-up, qualification and booking. With a system, the leaks seal and poor-fit leads are sorted out on purpose."></canvas>
-    <div class="river-bar-wrap"><div class="wrap"><div class="river-bar">
-      <p class="river-stat" id="riverStat"><b id="pipeStat">66 of 100</b> <span>leads lost to the cracks</span> <small>Simulation. Run your real numbers below.</small></p>
-      <button class="switch hint" id="pipeSwitch" role="switch" aria-checked="false"><span>Install the system</span><i aria-hidden="true"></i></button>
-    </div></div></div>
+    <div class="board rise" id="board" style="--i:2">
+      <div class="board-bar">
+        <div class="board-title"><b>Pipeline</b><span>Simulation</span></div>
+        <dl class="board-stats">
+          <div><dt>Lost to no follow-up</dt><dd class="lost" id="bLostNow">$0</dd></div>
+          <div><dt>Closed won</dt><dd class="won" id="bWonNow">$0</dd></div>
+        </dl>
+        <button class="switch hint" id="pipeSwitch" role="switch" aria-checked="false"><span>Install the system</span><i aria-hidden="true"></i></button>
+      </div>
+      <div class="board-cols" id="boardCols" aria-hidden="true">
+        <section data-col="new"><header>New lead <em></em></header><div class="col"></div></section>
+        <section data-col="follow"><header>Follow-up <em></em></header><div class="col"></div></section>
+        <section data-col="qual"><header>Qualified <em></em></header><div class="col"></div></section>
+        <section data-col="book"><header>Booked <em></em></header><div class="col"></div></section>
+        <section data-col="won"><header>Closed won <em></em></header><div class="col"></div></section>
+      </div>
+      <p class="sr" id="boardSr">Simulated sales pipeline. Without a system, leads wait and are lost. With a system, leads get an instant reply and move to closed won.</p>
+    </div>
   </div>
 </section>
 
 <div class="wrap logos"><p>Trusted by modern brands and operators</p><span>Ekster</span><span>Aura</span><span>Akiflow</span></div>
 
-<section class="sec" id="calculator" style="padding-top:clamp(56px,7vw,88px)">
+<section class="sec" id="familiar">
+  <div class="wrap split" style="align-items:start">
+    <h2 class="h-lg fx">Sound familiar?</h2>
+    <ol class="fam fx">
+      <li><b>Leads fall through the cracks</b><span>because follow-up depends on someone remembering.</span></li>
+      <li><b>Your best people do work a machine should do.</b><span>Busy all week. Numbers still flat.</span></li>
+      <li><b>Your ops run on you</b><span>and everyone knows it.</span></li>
+      <li><b>You’ve got tools. You don’t have a system.</b><span>Effort without a system is just expensive.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section class="sec" id="calculator" style="padding-top:0">
   <div class="wrap">
     <div class="calc" id="calc">
       <div>
@@ -130,26 +153,118 @@
 </section>
 
 <section class="sys" id="system">
-  <div class="wrap sys-in">
-    <div>
+  <div class="wrap">
+    <div class="sys-head fx">
       <h2 class="h-lg">We don’t run campaigns. We build the systems that make them work.</h2>
-      <div class="sys-line">
-        <div class="sys-state" data-s="0"><p class="lede">Most businesses hit a ceiling because they rely on:</p><ul><li>Manual effort</li><li>Fragmented tools</li><li>Disconnected strategies</li></ul></div>
-        <div class="sys-state" data-s="1"><p class="lede">We replace chaos with intention, so you grow without breaking:</p><ul><li>Revenue operations</li><li>AI workflows</li><li>Scalable distribution</li></ul></div>
-      </div>
+      <p class="lede">Here’s one lead moving through the system you’d have running.</p>
     </div>
-    <svg class="sys-map" id="sysMap" viewBox="0 0 600 520" role="img" aria-label="Six disconnected business tools move into place and connect to one revenue system.">
-      <g fill="none">
-        <path class="wire" pathLength="1" d="M300 260L120 70"/><path class="wire" pathLength="1" d="M300 260L300 50"/><path class="wire" pathLength="1" d="M300 260L480 70"/><path class="wire" pathLength="1" d="M300 260L480 450"/><path class="wire" pathLength="1" d="M300 260L300 470"/><path class="wire" pathLength="1" d="M300 260L120 450"/>
-      </g>
-      <g id="sysCore"><circle cx="300" cy="260" r="86" fill="#ffc105" opacity=".08"/><circle cx="300" cy="260" r="66" fill="#0b0b0a" stroke="#ffc105" stroke-width="1.5"/><text class="core-t" x="300" y="254" text-anchor="middle">Revenue</text><text class="core-t" x="300" y="277" text-anchor="middle">System</text></g>
-      <g class="node"><rect x="52" y="48" width="136" height="44" rx="11"/><text x="120" y="75" text-anchor="middle">Paid media</text></g>
-      <g class="node"><rect x="232" y="28" width="136" height="44" rx="11"/><text x="300" y="55" text-anchor="middle">Website</text></g>
-      <g class="node"><rect x="412" y="48" width="136" height="44" rx="11"/><text x="480" y="75" text-anchor="middle">CRM</text></g>
-      <g class="node"><rect x="412" y="428" width="136" height="44" rx="11"/><text x="480" y="455" text-anchor="middle">Follow-up</text></g>
-      <g class="node"><rect x="232" y="448" width="136" height="44" rx="11"/><text x="300" y="475" text-anchor="middle">Calendar</text></g>
-      <g class="node"><rect x="52" y="428" width="136" height="44" rx="11"/><text x="120" y="455" text-anchor="middle">Reporting</text></g>
-    </svg>
+    <div class="ch">
+      <div class="ch-stage" aria-hidden="true">
+        <div class="mock on" data-m="0">
+          <div class="mock-top"><b>New lead</b><span class="tag ok">Captured</span></div>
+          <div class="who"><i>PN</i><div><b>Priya N.</b><span>Owner, dental group, 3 locations</span></div></div>
+          <dl class="kv">
+            <div><dt>Source</dt><dd>Google Ads</dd></div>
+            <div><dt>Landed on</dt><dd>Pricing page</dd></div>
+            <div><dt>Deal size</dt><dd>$4,800</dd></div>
+            <div><dt>Fit score</dt><dd class="gold">82 / 100</dd></div>
+          </dl>
+        </div>
+        <div class="mock" data-m="1">
+          <div class="mock-top"><b>Priya N.</b><span class="tag ok">Replied in 4 sec</span></div>
+          <div class="msgs">
+            <p class="in">Do you work with multi-location practices?</p>
+            <p class="out">Yes, that’s most of who we help. How many new patient calls go unanswered in a typical week?</p>
+            <p class="in">Honestly? No idea. Maybe 15.</p>
+            <p class="out">That’s worth a look. Does Tuesday at 10:30 work for a short call?</p>
+          </div>
+        </div>
+        <div class="mock" data-m="2">
+          <div class="mock-top"><b>Call booked</b><span class="tag ok">Reminders set</span></div>
+          <div class="cal">
+            <div><span>Mon</span><i></i><i></i><i></i></div>
+            <div><span>Tue</span><i></i><i class="pick">10:30</i><i></i></div>
+            <div><span>Wed</span><i></i><i></i><i></i></div>
+            <div><span>Thu</span><i></i><i></i><i></i></div>
+          </div>
+          <ul class="done-list"><li>Added to the rep’s calendar</li><li>Prep notes written from the thread</li><li>CRM updated. Nobody typed anything</li></ul>
+        </div>
+        <div class="mock" data-m="3">
+          <div class="mock-top"><b>Revenue by source</b><span class="tag">This quarter</span></div>
+          <ul class="src">
+            <li style="--w:100%"><span>Google Ads</span><b>$38,420</b><i></i></li>
+            <li style="--w:55%"><span>LinkedIn</span><b>$21,150</b><i></i></li>
+            <li style="--w:39%"><span>Referrals</span><b>$14,900</b><i></i></li>
+            <li style="--w:24%"><span>Podcast</span><b>$9,275</b><i></i></li>
+          </ul>
+          <p class="src-foot">Every closed deal traced back to where it started.</p>
+        </div>
+        <p class="mock-note">Example data</p>
+      </div>
+      <ol class="ch-steps">
+        <li class="on" data-s="0"><span>Capture</span><h3>Every lead lands in one place.</h3><p>Ads, website, referrals and DMs stop living in separate tools. You see who came in and why.</p></li>
+        <li data-s="1"><span>Follow up</span><h3>They get an answer in seconds.</h3><p>No follow-up depends on someone remembering. Your AI operative replies, qualifies and keeps the thread moving.</p></li>
+        <li data-s="2"><span>Book</span><h3>Good fits land on the calendar.</h3><p>Calls get booked, reminders go out, and the CRM updates itself. No data entry.</p></li>
+        <li data-s="3"><span>See it</span><h3>You know what’s actually working.</h3><p>Real-time visibility into what’s working, what’s broken, and what needs attention, before it becomes a crisis.</p></li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="results">
+  <div class="wrap">
+    <div class="sec-head fx" style="margin-bottom:28px">
+      <h2 class="h-lg">Results, reported the way you’d want them.</h2>
+      <p class="ex-flag">Example case studies. Replace with real client results before launch.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="Example case studies">
+      <button role="tab" id="t0" aria-controls="p0" aria-selected="true">Home services</button>
+      <button role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">Consulting</button>
+      <button role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Coaching</button>
+    </div>
+    <article class="case" role="tabpanel" id="p0" aria-labelledby="t0" tabindex="0">
+      <div class="case-l">
+        <span class="ex-tag">Example, not a real client</span>
+        <h3>A regional roofing company answering leads the next day.</h3>
+        <h4>The leak</h4><p>Forms went to one inbox. The owner called back when possible, usually the next day, and most leads had already booked someone else.</p>
+        <h4>What we installed</h4><ul><li>Lead &amp; Pipeline Operative on every form and missed call</li><li>Automatic quote follow-up for 14 days</li><li>Owner dashboard by source</li></ul>
+      </div>
+      <div class="case-r">
+        <div class="met"><span>First response</span><b>3 min</b><small>was 19 hrs</small></div>
+        <div class="met"><span>Booked estimates</span><b>41 /mo</b><small>was 17</small></div>
+        <div class="met"><span>Owner admin time</span><b>6 hrs/wk</b><small>was 23</small></div>
+        <div class="trend" style="--a:18%;--b:24%;--c:31%;--d:47%;--e:63%;--f:78%;--g:92%"><p>Booked estimates over 90 days</p><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
+    </article>
+    <article class="case" role="tabpanel" id="p1" aria-labelledby="t1" tabindex="0" hidden>
+      <div class="case-l">
+        <span class="ex-tag">Example, not a real client</span>
+        <h3>A founder-led consultancy where every deal ran through the founder.</h3>
+        <h4>The leak</h4><p>Referrals were strong, but proposals and follow-ups lived in the founder’s head. Deals stalled whenever client work got busy.</p>
+        <h4>What we installed</h4><ul><li>Workflow Operatives connecting CRM, email and proposals</li><li>Qualification before the founder’s calendar</li><li>Weekly pipeline report, written automatically</li></ul>
+      </div>
+      <div class="case-r">
+        <div class="met"><span>Founder time on sales admin</span><b>7 hrs/wk</b><small>was 26</small></div>
+        <div class="met"><span>Proposal turnaround</span><b>1 day</b><small>was 9</small></div>
+        <div class="met"><span>Qualified pipeline</span><b>$312k</b><small>was $128k</small></div>
+        <div class="trend" style="--a:30%;--b:34%;--c:41%;--d:44%;--e:58%;--f:71%;--g:88%"><p>Qualified pipeline over 90 days</p><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
+    </article>
+    <article class="case" role="tabpanel" id="p2" aria-labelledby="t2" tabindex="0" hidden>
+      <div class="case-l">
+        <span class="ex-tag">Example, not a real client</span>
+        <h3>An online coach with plenty of attention and too few booked calls.</h3>
+        <h4>The leak</h4><p>Hundreds of DMs and comments a month, answered by hand. Good prospects went quiet because nobody got back to them in time.</p>
+        <h4>What we installed</h4><ul><li>DM and comment capture into one pipeline</li><li>AI qualification with a booking link for good fits</li><li>Show-up reminders by text and email</li></ul>
+      </div>
+      <div class="case-r">
+        <div class="met"><span>Booked calls</span><b>58 /mo</b><small>was 22</small></div>
+        <div class="met"><span>Show-up rate</span><b>74%</b><small>was 46%</small></div>
+        <div class="met"><span>Manual hours</span><b>5 hrs/wk</b><small>was 21</small></div>
+        <div class="trend" style="--a:22%;--b:29%;--c:43%;--d:52%;--e:60%;--f:83%;--g:90%"><p>Booked calls over 90 days</p><div><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+      </div>
+    </article>
+    <div class="sec-foot"><p style="color:var(--muted)">Want this report for your business?</p><button class="btn btn-gold" data-lead="results">Get My Free Leak Audit <svg aria-hidden="true"><use href="#arr"/></svg></button></div>
   </div>
 </section>
 
@@ -185,30 +300,20 @@
 </section>
 
 <section class="sec forge-band" id="forge">
-  <div class="wrap split">
+  <div class="wrap split" style="align-items:start">
     <div class="fx">
       <span class="eyebrow">Our implementation division</span>
-      <h2 class="h-lg" style="margin-top:18px">Meet Forge AI</h2>
-      <p class="lede" style="margin-top:20px">Elite Edge Collective designs the growth strategy. Forge AI installs intelligent automation and AI operatives directly into your business. Limited to 5 audits per month, so every audit is actually useful.</p>
-      <ul class="ops">
-        <li><b>Lead &amp; Pipeline Operatives</b><span>No lead goes cold because someone forgot to follow up.</span></li>
-        <li><b>Workflow Operatives</b><span>Your disconnected tools, unified.</span></li>
-        <li><b>Visibility Operatives</b><span>See what’s broken before it becomes a crisis.</span></li>
-      </ul>
+      <h2 class="h-lg" style="margin-top:12px">Meet Forge AI</h2>
+      <p class="lede" style="margin-top:18px">Elite Edge Collective designs the growth strategy. Forge AI installs the automation and AI operatives directly into your business.</p>
       <div class="hero-cta"><a class="btn btn-gold" href="forge-ai/index.html">Explore Forge AI <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
+      <p class="hero-note">Limited to 5 audits per month, so every audit is actually useful.</p>
     </div>
-    <div class="term fx">
-      <div class="term-top"><span>One lead, start to finish</span><button id="runAgain" type="button">Replay</button></div>
-      <ol class="run" id="run">
-        <li><time>0:00</time><i>●</i><span>New lead fills in the website form</span></li>
-        <li><time>0:04</time><i>●</i><span>Operative replies with a personal message<small>Not next week. Now.</small></span></li>
-        <li><time>0:40</time><i>●</i><span>Qualifying questions, answered in the thread</span></li>
-        <li><time>1:15</time><i>●</i><span>Good fit confirmed, calendar link sent</span></li>
-        <li><time>2:30</time><i>●</i><span>Call booked and reminders scheduled</span></li>
-        <li><time>2:31</time><i>●</i><span>CRM updated. Nobody typed anything<small>Dashboard shows the source of the lead</small></span></li>
-      </ol>
-      <p class="term-foot">Simulated walkthrough. Timings are illustrative.</p>
-    </div>
+    <ul class="ops fx" style="margin-top:0">
+      <li><b>Lead &amp; Pipeline Operatives</b><span>No lead goes cold because someone forgot to follow up.</span></li>
+      <li><b>Workflow Operatives</b><span>Your disconnected tools, unified.</span></li>
+      <li><b>Operations Operatives</b><span>Your SOPs stop living in people’s heads.</span></li>
+      <li><b>Visibility Operatives</b><span>See what’s broken before it becomes a crisis.</span></li>
+    </ul>
   </div>
 </section>
 
@@ -228,20 +333,6 @@
     <div class="sec-foot">
       <ul class="pod-tags"><li>10+ episodes</li><li>Weekly uploads</li><li>100% actionable</li></ul>
       <a class="btn" href="https://www.youtube.com/@TheExecutiveEdge1" target="_blank" rel="noopener">Watch on YouTube <svg aria-hidden="true"><use href="#arr"/></svg></a>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="results" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head" style="margin-bottom:28px">
-      <span class="slot-note">[Needs proof: 3 real client results before launch]</span>
-      <h2 class="h-lg">Client results</h2>
-    </div>
-    <div class="slots">
-      <div class="slot"><b>__%</b><h3>Client A: qualified pipeline</h3><p>Problem, system installed, 30/60/90-day result.</p></div>
-      <div class="slot"><b>__ hrs</b><h3>Client B: manual work removed</h3><p>Before and after workflow, tools used.</p></div>
-      <div class="slot"><b>$__</b><h3>Client C: revenue influenced</h3><p>Named quote from the founder.</p></div>
     </div>
   </div>
 </section>
@@ -333,8 +424,6 @@
   </div>
 </dialog>
 
-<script src="assets/vendor/gsap.min.js" defer></script>
-<script src="assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="assets/js/site.js?v=66e78ab5" defer></script>
+<script src="assets/js/site.js?v=ccfee286" defer></script>
 </body>
 </html>
